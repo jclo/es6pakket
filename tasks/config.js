@@ -9,9 +9,10 @@ const pack = require('../package.json');
 
 
 // -- Local constants
-const libname     = 'ES6Pakket'
-    , source      = './src/prototypal.js'
-    , exportname  = 'ES6Pakket'
+const libname    = 'ES6Pakket'
+    , name       = libname.replace(/\s+/g, '').toLowerCase()
+    , source     = './src/prototypal.js'
+    , exportname = 'ES6Pakket'
     ;
 
 
@@ -31,7 +32,7 @@ module.exports = {
   source,
   export: exportname,
   index: './index.js',
-  distlink: `./lib/${libname}.js`,
+  distlink: `./_dist/lib/${name}.js`,
 
   /* eslint-enable no-multi-spaces */
   get license() {
@@ -43,7 +44,7 @@ module.exports = {
       ` * Copyright (c) ${(new Date()).getFullYear()} ${pack.author.name} <${pack.author.email}> (${pack.author.url}).`,
       ' * Released under the MIT license. You may obtain a copy of the License',
       ' * at: http://www.opensource.org/licenses/mit-license.php).',
-      ' * Built from {{boiler:name}} v{{es6pakket:version}}.',
+      ' * Built from {{boiler:name}} v{{boiler:name:version}}.',
       ' * ************************************************************************** */',
       ''].join('\n');
   },

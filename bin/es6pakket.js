@@ -258,7 +258,7 @@ function _customize(source, dest, app, owner) {
 
   const pack = {};
   pack.name = app.toLowerCase();
-  pack.version = '0.0.0';
+  pack.version = '0.0.0-alpha.0';
   pack.description = `${app} ...`;
   pack.main = `_dist/lib/${app.toLowerCase()}.js`;
   pack.bin = {};
@@ -317,8 +317,6 @@ function _addSrc(source, dest, folder, app) {
   for (let i = 0; i < f.length; i++) {
     shell.sed('-i', re, app, f[i]);
   }
-
-  // shell.sed('-i', /{{template:version}}/, version, `${dest}/${folder}/_header`);
 }
 
 /**
@@ -335,7 +333,7 @@ function _addSrc(source, dest, folder, app) {
 function _addTasks(source, dest, folder, app) {
   const exclude = []
       , boiler  = '{{boiler:name}}'
-      , ver     = '{{es6pakket:version}}'
+      , ver     = '{{boiler:name:version}}'
       ;
 
   process.stdout.write(`  duplicated the contents of ${folder}\n`);

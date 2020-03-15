@@ -1,9 +1,9 @@
 ### HEAD
 
-### 0.0.1 (February 3, 2020)
+### 0.0.1 (March 15, 2020)
 
   * Fixed a typo in the README.md,
-  * Updated Pakket,
+  * Updated Pakket and the other dependencies,
   * ...,
 
 

@@ -2,8 +2,10 @@
 
 
 // -- Node modules
-const { src, dest, parallel } = require('gulp')
-    , fs = require('fs')
+const { src, dest, series } = require('gulp')
+    , fs      = require('fs')
+    , del     = require('del')
+    , replace = require('gulp-replace')
     ;
 
 
@@ -12,11 +14,9 @@ const config = require('./config')
     ;
 
 
-// -- Release version:
-
-
 // -- Local constants
-const { dist }     = config
+const tmppriv      = './private_repo/tmp'
+    , libname      = config.libname.replace(/\s+/g, '').toLowerCase()
     , { index }    = config
     , { distlink } = config
     ;
@@ -27,6 +27,21 @@ const { dist }     = config
 
 // -- Gulp Private Tasks
 
+// Removes the previous version.
+function clear(done) {
+  del.sync(tmppriv);
+  done();
+}
+
+// Copies the modified index.
+function copyindex() {
+  return src(index)
+    .pipe(replace(`./lib/${libname}`, distlink))
+    .pipe(dest(tmppriv))
+  ;
+}
+
+// Copies the modified package.json
 function copypackagejson(done) {
   fs.readFile('./package.json', 'utf8', (error, data) => {
     if (error) { throw error; }
@@ -40,7 +55,7 @@ function copypackagejson(done) {
     obj.husky = {};
 
     // Write the updated package.json:
-    fs.writeFile(`${dist}/package.json`, JSON.stringify(obj, null, 2), 'utf8', (err) => {
+    fs.writeFile(`${tmppriv}/package.json`, JSON.stringify(obj, null, 2), 'utf8', (err) => {
       if (err) {
         throw err;
       }
@@ -49,14 +64,7 @@ function copypackagejson(done) {
   });
 }
 
-// Copies the index.
-function copyindex() {
-  return src(index)
-    .pipe(dest(dist))
-  ;
-}
-
 
 // -- Gulp Public Task(s)
 
-module.exports = parallel(copypackagejson, copyindex);
+module.exports = series(clear, copyindex, copypackagejson);
