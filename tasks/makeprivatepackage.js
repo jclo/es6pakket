@@ -1,7 +1,7 @@
 /* eslint one-var: 0, import/no-extraneous-dependencies: 0, semi-style: 0 */
 
 
-// -- Node modules
+// -- Vendor Modules
 const { src, dest, series } = require('gulp')
     , fs      = require('fs')
     , del     = require('del')
@@ -9,12 +9,12 @@ const { src, dest, series } = require('gulp')
     ;
 
 
-// -- Local modules
+// -- Local Modules
 const config = require('./config')
     ;
 
 
-// -- Local constants
+// -- Local Constants
 const tmppriv      = './private_repo/tmp'
     , libname      = config.libname.replace(/\s+/g, '').toLowerCase()
     , { index }    = config
@@ -22,7 +22,7 @@ const tmppriv      = './private_repo/tmp'
     ;
 
 
-// -- Local variables
+// -- Local Variables
 
 
 // -- Gulp Private Tasks

@@ -27,16 +27,16 @@
 /* - */
 
 
-// -- Vendor modules
+// -- Vendor Modules
 
 
-// -- Local modules
+// -- Local Modules
 
 
-// -- Local constants
+// -- Local Constants
 
 
-// -- Local variables
+// -- Local Variables
 
 
 // -- Public function ----------------------------------------------------------

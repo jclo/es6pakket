@@ -1,14 +1,14 @@
 /* eslint one-var: 0, semi-style: 0 */
 
 
-// -- Vendor modules
+// -- Vendor Modules
 
 
-// -- Local modules
+// -- Local Modules
 const pack = require('../package.json');
 
 
-// -- Local constants
+// -- Local Constants
 const libname    = 'ES6Pakket'
     , name       = libname.replace(/\s+/g, '').toLowerCase()
     , source     = './src/prototypal.js'
@@ -16,7 +16,7 @@ const libname    = 'ES6Pakket'
     ;
 
 
-// -- Local variables
+// -- Local Variables
 
 
 // -- Main
@@ -25,6 +25,7 @@ module.exports = {
   dist: './_dist',
   libdir: './lib',
   libname,
+
   // This is the entry javascript file of your library. Choose one
   // pattern among these ones. he files 'basic.js', 'functional.js',
   // 'functional-shared.js', 'prototypal.js', 'pseudoclassical.js' and
@@ -34,7 +35,6 @@ module.exports = {
   index: './index.js',
   distlink: `./_dist/lib/${name}.js`,
 
-  /* eslint-enable no-multi-spaces */
   get license() {
     return ['/*! ****************************************************************************',
       ` * ${libname} v${pack.version}`,

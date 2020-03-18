@@ -27,16 +27,16 @@
 /* eslint-disable no-underscore-dangle */
 
 
-// -- Vendor modules
+// -- Vendor Modules
 
 
-// -- Local modules
+// -- Local Modules
 
 
-// -- Local constants
+// -- Local Constants
 
 
-// -- Local variables
+// -- Local Variables
 
 
 // -- Private Functions --------------------------------------------------------

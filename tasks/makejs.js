@@ -1,7 +1,7 @@
 /* eslint  one-var: 0, import/no-extraneous-dependencies: 0, semi-style: 0 */
 
 
-// -- Node modules
+// -- Vendor Modules
 const { src, dest, series } = require('gulp')
     , del      = require('del')
     , concat   = require('gulp-concat')
@@ -10,13 +10,13 @@ const { src, dest, series } = require('gulp')
     ;
 
 
-// -- Local modules
+// -- Local Modules
 const pack   = require('../package.json')
     , config = require('./config')
     ;
 
 
-// -- Local constants
+// -- Local Constants
 const destination  = config.libdir
     , { source }   = config
     , exportname   = config.export
@@ -26,7 +26,7 @@ const destination  = config.libdir
     ;
 
 
-// -- Local variables
+// -- Local Variables
 
 
 // -- Gulp Private Tasks

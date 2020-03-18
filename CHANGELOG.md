@@ -1,5 +1,11 @@
 ### HEAD
 
+### 0.0.2 (March 18, 2020)
+
+  * Made some aesthetic changes,
+  * ...,
+
+
 ### 0.0.1 (March 15, 2020)
 
   * Fixed a typo in the README.md,

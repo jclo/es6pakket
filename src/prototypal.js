@@ -35,21 +35,21 @@
 /* eslint-disable one-var, semi-style */
 
 
-// -- Vendor modules
+// -- Vendor Modules
 
 
-// -- Local modules
+// -- Local Modules
 import Util from './util/util';
 
 
-// -- Local constants
+// -- Local Constants
 // Saves the previous value of the library variable, so that it can be
 // restored later on, if noConflict is used.
 const previousES6Pakket = root.ES6Pakket
     ;
 
 
-// -- Local variables
+// -- Local Variables
 let methods
   ;
 

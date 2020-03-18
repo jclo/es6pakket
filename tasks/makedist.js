@@ -2,7 +2,7 @@
   object-curly-newline: 0 */
 
 
-// -- Node modules
+// -- Vendor Modules
 const { src, dest, series, parallel } = require('gulp')
     , del     = require('del')
     , concat  = require('gulp-concat')
@@ -11,12 +11,12 @@ const { src, dest, series, parallel } = require('gulp')
     ;
 
 
-// -- Local modules
+// -- Local Modules
 const config = require('./config')
     ;
 
 
-// -- Local constants
+// -- Local Constants
 const { dist }     = config
     , { libdir }   = config
     , { libname }  = config
@@ -25,7 +25,7 @@ const { dist }     = config
     ;
 
 
-// -- Local variables
+// -- Local Variables
 
 
 // -- Gulp Private Tasks
