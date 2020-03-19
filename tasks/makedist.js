@@ -7,6 +7,7 @@ const { src, dest, series, parallel } = require('gulp')
     , del     = require('del')
     , concat  = require('gulp-concat')
     , header  = require('gulp-header')
+    , replace = require('gulp-replace')
     , uglify  = require('gulp-uglify-es').default
     ;
 
@@ -54,6 +55,7 @@ function copydev() {
 // Creates the minified version.
 function makeminified() {
   return src(`${libdir}/${name}.js`)
+    .pipe(replace('/*! ***', '/** ***'))
     .pipe(uglify())
     .pipe(header(license))
     .pipe(concat(`${name}.min.js`))

@@ -1,8 +1,9 @@
 ### HEAD
 
-### 0.0.2 (March 18, 2020)
+### 0.0.2 (March 19, 2020)
 
   * Made some aesthetic changes,
+  * Fixed some minor typos,
   * ...,
 
 
