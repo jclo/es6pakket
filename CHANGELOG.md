@@ -4,7 +4,7 @@
 
   * Made some aesthetic changes,
   * Fixed some minor typos,
-  * ...,
+  * Release.
 
 
 ### 0.0.1 (March 15, 2020)
