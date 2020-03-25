@@ -10,7 +10,7 @@ const should     = require('chai').should()
 
 
 // -- Local Modules
-const ES6Pakket = require('../index.js')
+const ES6Pakket = require('../index')
     ;
 
 

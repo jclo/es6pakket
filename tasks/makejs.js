@@ -20,8 +20,7 @@ const pack   = require('../package.json')
 const destination  = config.libdir
     , { source }   = config
     , exportname   = config.export
-    , { libname }  = config
-    , name         = libname.replace(/\s+/g, '').toLowerCase()
+    , { name }     = config
     , { version }  = pack
     ;
 

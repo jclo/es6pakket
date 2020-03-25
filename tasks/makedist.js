@@ -20,8 +20,7 @@ const config = require('./config')
 // -- Local Constants
 const { dist }     = config
     , { libdir }   = config
-    , { libname }  = config
-    , name         = libname.replace(/\s+/g, '').toLowerCase()
+    , { name }     = config
     , { license }  = config
     ;
 

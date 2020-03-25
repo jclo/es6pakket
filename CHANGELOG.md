@@ -1,5 +1,12 @@
 ### HEAD
 
+### 0.0.3 (March 25, 2020)
+
+  * Fixed a few typos,
+  * Added the ESM module to enable Mocha testing from the source files,
+  * ...,
+
+
 ### 0.0.2 (March 19, 2020)
 
   * Made some aesthetic changes,

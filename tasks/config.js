@@ -25,6 +25,7 @@ module.exports = {
   dist: './_dist',
   libdir: './lib',
   libname,
+  name,
 
   // This is the entry javascript file of your library. Choose one
   // pattern among these ones. he files 'basic.js', 'functional.js',

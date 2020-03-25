@@ -86,7 +86,7 @@ ES6Pakket.VERSION = '{{lib:version}}';
  * @method ()
  * @public
  * @param {}                -,
- * @returns {String}        returns the ES6Pakket object,
+ * @returns {Object}        returns the ES6Pakket object,
  * @since 0.0.0
  */
 /* istanbul ignore next */
