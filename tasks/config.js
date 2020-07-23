@@ -28,7 +28,7 @@ module.exports = {
   name,
 
   // This is the entry javascript file of your library. Choose one
-  // pattern among these ones. he files 'basic.js', 'functional.js',
+  // pattern among these ones. The files 'basic.js', 'functional.js',
   // 'functional-shared.js', 'prototypal.js', 'pseudoclassical.js' and
   // 'pseudoclassical-auto.js' are mutually exclusives.
   source,

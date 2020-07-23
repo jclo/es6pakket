@@ -28,13 +28,13 @@ You can easily get your first ES6Pakket library running in a couple of minutes b
 Then, you have to install the `ES6Pakket` package globally. Open a terminal session and type the command line:
 
 ```bash
-npm install es6pakket -g
+npm install @mobilabs/es6pakket -g
 ```
 
 Or, if you don't have the rights to install es6lib globally, you can install it locally in your project. Open a terminal session, move to your working directory - the empty folder you created - and type the following command line:
 
 ```bash
-npm install es6pakket
+npm install @mobilabs/es6pakket
 ```
 
 Now populate your empty folder and create your first UMD library:

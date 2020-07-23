@@ -57,6 +57,18 @@ function rmextraglob() {
   ;
 }
 
+// Remove extra 'use strict'.
+// (keep the two first only)
+function rmextrastrict() {
+  return src(`${destination}/${name}.js`)
+    .pipe(replace(/use strict/, 'use_strict'))
+    .pipe(replace(/use strict/, 'use_strict'))
+    .pipe(replace(/'use strict';/g, '/* - */'))
+    .pipe(replace(/use_strict/g, 'use strict'))
+    .pipe(dest(destination))
+  ;
+}
+
 
 // -- Gulp Public Task(s)
-module.exports = series(clean, dolib, rmextraglob);
+module.exports = series(clean, dolib, rmextraglob, rmextrastrict);
