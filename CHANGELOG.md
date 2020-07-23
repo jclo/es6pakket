@@ -5,6 +5,7 @@
   * Fixed a few typos,
   * Added the ESM module to enable Mocha testing from the source files,
   * Updated the dependencies,
+  * First release candidate,
   * ...,
 
 
