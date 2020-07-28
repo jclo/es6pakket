@@ -22,6 +22,7 @@ const libname    = 'ES6Pakket'
 // -- Main
 
 module.exports = {
+  ES6GLOB: '$__ES6GLOB',
   dist: './_dist',
   libdir: './lib',
   libname,

@@ -1,8 +1,10 @@
 {
   "name": "@mobilabs/es6pakket",
-  "version": "0.0.3-beta.2",
+  "version": "0.0.3-beta.3",
   "description": "A boilerplate for building Javascript ES6 libraries with Pakket",
-  "main": "./_dist/lib/es6pakket.js",
+  "main": "index.js",
+  "unpkg": "_dist/lib/es6pakket.min.js",
+  "module": "_dist/lib/es6pakket.min.mjs",
   "bin": {
     "es6pakket": "./bin/es6pakket.js"
   },
@@ -40,16 +42,16 @@
   "homepage": "https://github.com/jclo/es6pakket",
   "dependencies": {
     "nopt": "^4.0.3",
-    "shelljs": "^0.8.3"
+    "shelljs": "^0.8.4"
   },
   "devDependencies": {
     "chai": "^4.2.0",
-    "coveralls": "^3.0.9",
+    "coveralls": "^3.1.0",
     "cross-env": "^7.0.2",
     "del": "^5.1.0",
     "eslint": "^7.5.0",
-    "eslint-config-airbnb-base": "^14.1.0",
-    "eslint-plugin-import": "^2.20.1",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-import": "^2.22.0",
     "esm": "^3.2.25",
     "gulp": "^4.0.2",
     "gulp-concat": "^2.6.1",
@@ -57,12 +59,12 @@
     "gulp-header": "^2.0.9",
     "gulp-replace": "^1.0.0",
     "gulp-uglify-es": "^2.0.0",
-    "husky": "^4.2.3",
+    "husky": "^4.2.5",
     "mocha": "^8.0.1",
-    "nyc": "^15.0.0",
-    "open": "^7.0.3",
+    "nyc": "^15.1.0",
+    "open": "^7.1.0",
     "opener": "^1.5.1",
-    "pakket": "0.0.2-beta.1"
+    "pakket": "0.0.2-beta.2"
   },
   "publishConfig": {
     "access": "public"

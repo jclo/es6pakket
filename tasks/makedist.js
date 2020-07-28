@@ -43,7 +43,7 @@ function doskeleton() {
   ;
 }
 
-// Copies the development version.
+// Copies the umd development version.
 function copydev() {
   return src(`${libdir}/${name}.js`)
     .pipe(header(license))
@@ -51,7 +51,15 @@ function copydev() {
   ;
 }
 
-// Creates the minified version.
+// Copies the es6 development version.
+function copyes6dev() {
+  return src(`${libdir}/${name}.mjs`)
+    .pipe(header(license))
+    .pipe(dest(`${dist}/lib`))
+  ;
+}
+
+// Creates the umd minified version.
 function makeminified() {
   return src(`${libdir}/${name}.js`)
     .pipe(replace('/*! ***', '/** ***'))
@@ -62,10 +70,21 @@ function makeminified() {
   ;
 }
 
+// Creates the es6 minified version.
+function makees6minified() {
+  return src(`${libdir}/${name}.mjs`)
+    .pipe(replace('/*! ***', '/** ***'))
+    .pipe(uglify())
+    .pipe(header(license))
+    .pipe(concat(`${name}.min.mjs`))
+    .pipe(dest(`${dist}/lib`))
+  ;
+}
+
 
 // -- Gulp Public Task(s):
 
 module.exports = series(
   deldist,
-  parallel(doskeleton, copydev, makeminified),
+  parallel(doskeleton, copydev, copyes6dev, makeminified, makees6minified),
 );

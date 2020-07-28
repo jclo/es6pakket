@@ -261,6 +261,8 @@ function _customize(source, dest, app, owner) {
   pack.version = '0.0.0-alpha.0';
   pack.description = `${app} ...`;
   pack.main = `_dist/lib/${app.toLowerCase()}.js`;
+  pack.unpkg = `_dist/lib/${app.toLowerCase()}.mjs`;
+  pack.module = `_dist/lib/${app.toLowerCase()}.min.mjs`;
   pack.bin = {};
   pack.scripts = obj.scripts;
   pack.repository = obj.repository;
