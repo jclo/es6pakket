@@ -10,6 +10,7 @@
   * Added the option to generate an ES6 Module,
   * Third release candidate,
   * Updated Pakket module,
+  * Fourth release candidate,
   * ...,
 
 
