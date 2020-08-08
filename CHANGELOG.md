@@ -1,6 +1,6 @@
 ### HEAD
 
-### 0.0.3 (August 2, 2020)
+### 0.0.3 (August 8, 2020)
 
   * Fixed a few typos,
   * Added the ESM module to enable Mocha testing from the source files,
@@ -11,6 +11,7 @@
   * Third release candidate,
   * Updated Pakket module,
   * Fourth release candidate,
+  * Updated the project dependencies,
   * ...,
 
 
