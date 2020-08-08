@@ -12,6 +12,7 @@
   * Updated Pakket module,
   * Fourth release candidate,
   * Updated the project dependencies,
+  * Fifth release candidate,
   * ...,
 
 
