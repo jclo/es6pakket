@@ -6,5 +6,3 @@ _old_*
 coverage
 node_modules
 private_repo
-
-_dist

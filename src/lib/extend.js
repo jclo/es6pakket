@@ -1,4 +1,4 @@
-/** ****************************************************************************
+/** ************************************************************************
  *
  * Provides the function 'extend' that is used to fill the object tree with
  * the public static or object methods when the Javascript VM browses the
@@ -16,13 +16,13 @@
  *
  *
  *
- * @namespace    ES6Pakket.src.lib.extend
+ * @namespace    -
  * @dependencies none
  * @exports      -
  * @author       -
  * @since        0.0.0
  * @version      -
- * ************************************************************************** */
+ * ********************************************************************** */
 /* global */
 /* - */
 
@@ -39,7 +39,7 @@
 // -- Local Variables
 
 
-// -- Public function ----------------------------------------------------------
+// -- Public function ------------------------------------------------------
 
 /**
  * Extends the passed-in object with new methods.

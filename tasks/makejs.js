@@ -42,6 +42,7 @@ function clean(done) {
 function dogenericlib() {
   const pakket = Pakket(source, { export: exportname, type: 'generic' });
   return pakket.bundle()
+    .pipe(replace('{{lib:name}}', exportname))
     .pipe(replace('{{lib:version}}', version))
 
     // Remove extra global.
