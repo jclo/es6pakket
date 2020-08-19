@@ -17,6 +17,7 @@
   * Reorganised the test folder,
   * Sixth release candidate,
   * Restructured the test set,
+  * Seventh release candidate,
   * ...,
 
 
