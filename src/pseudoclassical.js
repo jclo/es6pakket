@@ -63,13 +63,13 @@ const previousES6Pakket = root.ES6Pakket
  * Returns the ES6Pakket object.
  * (Pseudoclassical Instantiation Pattern)
  *
- * @constructor (arg1)
+ * @constructor ()
  * @public
- * @param {String}          the argument to be saved as an object variable,
+ * @param {}                -,
  * @returns {Object}        returns the ES6Pakket object,
  * @since 0.0.0
  */
-const ES6Pakket = function(name) {
+const ES6Pakket = function() {
   if (!(this instanceof ES6Pakket)) {
     throw new Error('ES6Pakket needs to be called with the new keyword!');
   }
@@ -77,7 +77,6 @@ const ES6Pakket = function(name) {
     name: '{{lib:name}}',
     version: '{{lib:version}}',
   };
-  this.name = name;
 };
 
 // Attaches constants to ES6Pakket that provide name and version of the lib.

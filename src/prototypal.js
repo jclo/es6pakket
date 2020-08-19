@@ -65,19 +65,18 @@ let methods
  * Returns the ES6Pakket object.
  * (Prototypal Instantiation Pattern)
  *
- * @constructor (arg1)
+ * @constructor ()
  * @public
- * @param {String}          the argument to be saved as an object variable,
+ * @param {}                -,
  * @returns {Object}        returns the ES6Pakket object,
  * @since 0.0.0
  */
-const ES6Pakket = function(name) {
+const ES6Pakket = function() {
   const obj = Object.create(methods);
   obj._library = {
     name: '{{lib:name}}',
     version: '{{lib:version}}',
   };
-  obj.name = name;
   return obj;
 };
 
