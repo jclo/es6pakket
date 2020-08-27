@@ -19,7 +19,7 @@
   * Restructured the test set,
   * Seventh release candidate,
   * Updated the project dependencies,
-  * ...,
+  * Release.
 
 
 ### 0.0.2 (March 19, 2020)
