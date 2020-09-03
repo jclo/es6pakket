@@ -1,5 +1,5 @@
 /*! ****************************************************************************
- * ES6Pakket v1.0.0
+ * ES6Pakket v1.0.1
  *
  * A boilerplate for building Javascript ES6 libraries with Pakket.
  * (you can download it from npm or github repositories)
@@ -113,14 +113,14 @@ const $__ES6GLOB = {};
       const obj = Object.create(methods);
       obj._library = {
         name: 'ES6Pakket',
-        version: '1.0.0',
+        version: '1.0.1',
       };
       return obj;
     };
 
     // Attaches constants to ES6Pakket that provide name and version of the lib.
     ES6Pakket.NAME = 'ES6Pakket';
-    ES6Pakket.VERSION = '1.0.0';
+    ES6Pakket.VERSION = '1.0.1';
 
 
     // -- Private Static Methods -----------------------------------------------
@@ -183,6 +183,7 @@ const $__ES6GLOB = {};
 
       /**
        * Returns a string.
+       * (must be deleted)
        *
        * @method ()
        * @public
@@ -196,6 +197,7 @@ const $__ES6GLOB = {};
 
       /**
        * Returns an array.
+       * (must be deleted)
        *
        * @method ()
        * @public
@@ -333,4 +335,4 @@ const $__ES6GLOB = {};
 },{},[1])(1)}));
 
 // -- Export
-export default $__ES6GLOB.ES6Pakket
+export default $__ES6GLOB.ES6Pakket;

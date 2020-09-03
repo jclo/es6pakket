@@ -2,6 +2,10 @@
 /* *****************************************************************************
  * es6pakket.js creates the skeleton for writing ES6 Javascript libraries.
  *
+ * Nota:
+ * es6pakket.js is a copy and paste of es6kadoo.js with a few minor changes
+ * (https://github.com/jclo/es6pakket/blob/master/bin/es6pakket.js).
+ *
  * The MIT License (MIT)
  *
  * Copyright (c) 2020 Mobilabs <contact@mobilabs.fr> (http://www.mobilabs.fr)
@@ -24,21 +28,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  * ************************************************************************** */
-/* eslint one-var: 0,semi-style: 0 */
+/* eslint one-var: 0, semi-style: 0, no-underscore-dangle: 0 */
 
 
-// -- Node modules
+// -- Vendor Modules
 const fs    = require('fs')
     , nopt  = require('nopt')
     , path  = require('path')
     , shell = require('shelljs')
     ;
 
-// -- Global variables
-const boilerlib   = 'ES6Pakket'
+
+// -- Local Variables
+const defBoilerLib  = 'ES6Pakket'
     /* eslint-disable-next-line object-curly-newline */
-    , author = { name: 'John Doe', acronym: 'jdo', email: 'jdo@johndoe.com', url: 'http://www.johndoe.com' }
-    , copyright   = 'Copyright (c) 2020 {{author:name}} <{{author:email}}> ({{author:url}})'
+    , defAuthor   = { name: 'John Doe', acronym: 'jdo', email: 'jdo@johndoe.com', url: 'http://www.johndoe.com' }
+    , copyright   = `Copyright (c) ${new Date().getFullYear()} {{author:name}} <{{author:email}}> ({{author:url}})`
     , baseapp     = process.cwd()
     , baseboiler  = __dirname.replace('/bin', '')
     , { version } = require('../package.json')
@@ -50,19 +55,28 @@ const boilerlib   = 'ES6Pakket'
     , opts = {
       help: [Boolean, false],
       version: [String, null],
-      collection: [Boolean, false],
       path,
+      boilerlib: [String, null],
       name: [String, null],
+      author: [String, null],
+      acronym: [String, null],
+      email: [String, null],
+      url: [String, null],
     }
     , shortOpts = {
       h: ['--help'],
       v: ['--version', version],
-      c: ['--collection'],
       p: ['--path'],
+      b: ['--boilerlib'],
       n: ['--name'],
+      a: ['--author'],
+      c: ['--acronym'],
+      e: ['--email'],
+      u: ['--url'],
     }
     , parsed = nopt(opts, shortOpts, process.argv, 2)
     ;
+
 
 // -- Templates
 const readme = [
@@ -133,8 +147,7 @@ const npmignore = [
   ''].join('\n');
 
 
-// -- Private functions --------------------------------------------------------
-/* eslint-disable no-underscore-dangle */
+// -- Private Functions --------------------------------------------------------
 
 /**
  * Displays help message.
@@ -152,7 +165,12 @@ function _help() {
     '',
     '-h, --help          output usage information',
     '-v, --version       output the version number',
+    '-b, --boilerlib     the name of the boilerplate',
     '-n, --name          the name of the app',
+    '-a, --author        the name of the author (ex. "John Doe")',
+    '-c, --acronym       the acronym of the author (ex. jdo)',
+    '-e, --email         the email address of the author (ex. jdo@johndoe.com)',
+    '-u, --url           the website of the author (ex. http://www.johndoe.com)',
     '',
   ].join('\n');
 
@@ -256,14 +274,15 @@ function _duplicate(source, dest) {
 /**
  * Customizes 'Package.json'.
  *
- * @function (arg1, arg2, arg3, arg4)
+ * @function (arg1, arg2, arg3, arg4, arg5)
  * @private
  * @param {String}          the source path,
  * @param {String}          the destination path,
  * @param {Object}          the author credentials,
+ * @param {String}          the name of the boilerplate,
  * @returns {}              -,
  */
-function _customize(source, dest, app, owner) {
+function _customize(source, dest, app, owner, boilerlib) {
   const npm = 'package.json';
 
   const json = shell.cat(`${source}/${npm}`);
@@ -278,7 +297,21 @@ function _customize(source, dest, app, owner) {
   pack.unpkg = `_dist/lib/${app.toLowerCase()}.mjs`;
   pack.module = `_dist/lib/${app.toLowerCase()}.min.mjs`;
   pack.bin = {};
-  pack.scripts = obj.scripts;
+  pack.scripts = {
+    build: obj.scripts.build,
+    watch: obj.scripts.watch,
+    dev: obj.scripts.dev,
+    test: obj.scripts.test,
+    'display-coverage': obj.scripts['display-coverage'],
+    'check-coverage': obj.scripts['check-coverage'],
+    'report-coverage': obj.scripts['report-coverage'],
+    report: obj.scripts.report,
+    makedist: obj.scripts.makedist,
+    app: obj.scripts.app,
+    makeprivate: obj.scripts.makeprivate,
+    makelib: obj.scripts.makelib,
+    doc: obj.scripts.doc,
+  };
   pack.repository = obj.repository;
   pack.repository.url = `https://github.com/${owner.acronym}/${app.toLowerCase()}.git`;
   pack.keywords = ['ES6'];
@@ -296,8 +329,11 @@ function _customize(source, dest, app, owner) {
   pack.private = obj.private;
   pack.husky = obj.husky;
 
+  pack.devDependencies[`@mobilabs/${boilerlib.toLocaleLowerCase()}`] = version;
+
   delete pack.dependencies.nopt;
   delete pack.dependencies.shelljs;
+  delete pack.devDependencies['@mobilabs/es6kadoo'];
 
   process.stdout.write(`  updated ${npm}\n`);
   json.stdout = JSON.stringify(pack, null, 2);
@@ -307,15 +343,16 @@ function _customize(source, dest, app, owner) {
 /**
  * Adds the source files.
  *
- * @function (arg1, arg2, arg3, arg4)
+ * @function (arg1, arg2, arg3, arg4, arg5)
  * @private
  * @param {String}          the source path,
  * @param {String}          the destination path,
  * @param {String}          the destination folder,
  * @param {String}          the name of the app,
+ * @param {String}          the name of the boilerplate,
  * @returns {}              -,
  */
-function _addSrc(source, dest, folder, app) {
+function _addSrc(source, dest, folder, app, boilerlib) {
   const exclude = [];
 
   // Copy contents of source folder recursively to dest:
@@ -338,15 +375,16 @@ function _addSrc(source, dest, folder, app) {
 /**
  * Adds the task files.
  *
- * @function (arg1, arg2, arg3, arg4)
+ * @function (arg1, arg2, arg3, arg4, arg5)
  * @private
  * @param {String}          the source path,
  * @param {String}          the destination path,
  * @param {String}          the destination folder,
  * @param {String}          the App name,
+ * @param {String}          the name of the boilerplate,
  * @returns {}              -,
  */
-function _addTasks(source, dest, folder, app) {
+function _addTasks(source, dest, folder, app, boilerlib) {
   const exclude = []
       , boiler  = '{{boiler:name}}'
       , ver     = '{{boiler:name:version}}'
@@ -370,15 +408,16 @@ function _addTasks(source, dest, folder, app) {
 /**
  * Adds the test files.
  *
- * @function (arg1, arg2, arg3, arg4)
+ * @function (arg1, arg2, arg3, arg4, arg5)
  * @private
  * @param {String}          the source path,
  * @param {String}          the destination path,
  * @param {String}          the destination folder,
  * @param {String}          the name of the app,
+ * @param {String}          the name of the boilerplate,
  * @returns {}              -,
  */
-function _addTest(source, dest, folder, app) {
+function _addTest(source, dest, folder, app, boilerlib) {
   const exclude = [];
 
   process.stdout.write(`  duplicated the contents of ${folder}\n`);
@@ -406,10 +445,38 @@ function _addTest(source, dest, folder, app) {
  * @returns {}        -,
  */
 function _populate(options) {
-  const app = !options.name || options.name === 'true'
-    ? 'myApp'
-    : options.name;
+  const boilerlib = options && options.boilerlib && options.boilerlib !== 'true'
+    ? options.boilerlib
+    : defBoilerLib;
 
+  const app = options && options.name && options.name !== 'true'
+    ? options.name
+    : 'myApp';
+
+  let author;
+  if (!options || (!options.author && !options.acronym && !options.email && !options.url)) {
+    author = defAuthor;
+  } else {
+    author = {
+      name: 'Unknown', acronym: 'undefined', email: 'undefined', url: 'undefined',
+    };
+  }
+
+  author.name = options && options.author && options.author !== 'true'
+    ? options.author
+    : author.name;
+
+  author.acronym = options && options.acronym && options.acronym !== 'true'
+    ? options.acronym
+    : author.acronym;
+
+  author.email = options && options.email && options.email !== 'true'
+    ? options.email
+    : author.email;
+
+  author.url = options && options.url && options.url !== 'true'
+    ? options.url
+    : author.url;
 
   const resp = _isFolderEmpty(baseapp);
   if (!resp) {
@@ -425,20 +492,19 @@ function _populate(options) {
   _duplicate(baseboiler, baseapp);
 
   // Add and customize package.json:
-  _customize(baseboiler, baseapp, app, author);
+  _customize(baseboiler, baseapp, app, author, boilerlib);
 
   // Copy the src files:
-  _addSrc(baseboiler, baseapp, src, app);
+  _addSrc(baseboiler, baseapp, src, app, boilerlib);
 
   // Add tasks:
-  _addTasks(baseboiler, baseapp, tasks, app);
+  _addTasks(baseboiler, baseapp, tasks, app, boilerlib);
 
   // Copy Test Files:
-  _addTest(baseboiler, baseapp, test, app);
+  _addTest(baseboiler, baseapp, test, app, boilerlib);
 
   process.stdout.write('Done. Enjoy!\n');
 }
-/* eslint-disable no-underscore-dangle */
 
 
 // -- Main
@@ -447,7 +513,7 @@ if (parsed.help) {
 }
 
 if (parsed.version) {
-  process.stdout.write(`${boilerlib} version: ${parsed.version}\n`);
+  process.stdout.write(`version: ${parsed.version}\n`);
   process.exit(0);
 }
 

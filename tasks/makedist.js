@@ -18,10 +18,10 @@ const config = require('./config')
 
 
 // -- Local Constants
-const { dist }     = config
-    , { libdir }   = config
-    , { name }     = config
-    , { license }  = config
+const { dist }    = config
+    , { libdir }  = config
+    , { name }    = config
+    , { license } = config
     ;
 
 
@@ -43,7 +43,7 @@ function doskeleton() {
   ;
 }
 
-// Copies the umd development version.
+// Copies the development version.
 function copydev() {
   return src(`${libdir}/${name}.js`)
     .pipe(header(license))
@@ -51,15 +51,15 @@ function copydev() {
   ;
 }
 
-// Copies the es6 development version.
-function copyes6dev() {
+// Copies the module development version.
+function copydevm() {
   return src(`${libdir}/${name}.mjs`)
     .pipe(header(license))
     .pipe(dest(`${dist}/lib`))
   ;
 }
 
-// Creates the umd minified version.
+// Creates the minified version.
 function makeminified() {
   return src(`${libdir}/${name}.js`)
     .pipe(replace('/*! ***', '/** ***'))
@@ -70,8 +70,8 @@ function makeminified() {
   ;
 }
 
-// Creates the es6 minified version.
-function makees6minified() {
+// Creates the module minified version.
+function makeminifiedm() {
   return src(`${libdir}/${name}.mjs`)
     .pipe(replace('/*! ***', '/** ***'))
     .pipe(uglify())
@@ -86,5 +86,5 @@ function makees6minified() {
 
 module.exports = series(
   deldist,
-  parallel(doskeleton, copydev, copyes6dev, makeminified, makees6minified),
+  parallel(doskeleton, copydev, copydevm, makeminified, makeminifiedm),
 );

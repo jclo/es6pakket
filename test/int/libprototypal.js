@@ -12,23 +12,34 @@ const { expect } = require('chai')
 
 
 // -- Local Constants
+// Number of owned custom properties added by your library,
+// number of owned and inherited properties added by your library (instance),
+// number of items returned by '_setTestMode'.
+const LIBPROPS = 0
+    , OWNPROPS = 0
+    , INHPROPS = 2
+    , TESTMODE = 0
+    ;
 
 
 // -- Local Variables
 
 
 // -- Main
-module.exports = function(ES6Pakket, libname, version) {
+module.exports = function(ES6Pakket, libname, version, type) {
   describe('ES6Pakket introspection:', () => {
     describe('Test the nature of ES6Pakket:', () => {
       it('Expects ES6Pakket to be a function.', () => {
         expect(ES6Pakket).to.be.a('function');
       });
 
-      it('Expects ES6Pakket to own 4 custom properties.', () => {
-        expect(Object.keys(ES6Pakket)).to.be.an('array').that.has.lengthOf(4);
+      it(`Expects ES6Pakket to own ${4 + LIBPROPS} custom properties.`, () => {
+        expect(Object.keys(ES6Pakket)).to.be.an('array').that.has.lengthOf(4 + LIBPROPS);
       });
 
+
+      // -- This section must not be modified --
+      // NAME, VERSION, _library, _setTestMode, noConflict
       describe('Check the owned generic custom properties:', () => {
         it(`Expects ES6Pakket to own the property "NAME" whose value is "${libname}".`, () => {
           expect(ES6Pakket).to.own.property('NAME').that.is.equal(libname);
@@ -47,19 +58,45 @@ module.exports = function(ES6Pakket, libname, version) {
         });
 
         describe('Test the owned generic custom properties:', () => {
-          it('Expects the property "_setTestMode" to return an array with 0 item.', () => {
-            expect(ES6Pakket._setTestMode()).to.be.an('array').that.has.lengthOf(0);
+          it(`Expects the property "_setTestMode" to return an array with ${TESTMODE} item(s).`, () => {
+            expect(ES6Pakket._setTestMode()).to.be.an('array').that.has.lengthOf(TESTMODE);
           });
 
           it('Expects the property "noConflict" to return a function.', () => {
             expect(ES6Pakket.noConflict()).to.be.a('function');
           });
         });
+
+
+        // -- This section must  be adapted --
+        // Add here the owned properties added by your library.
+        describe('Check the owned specific custom properties:', () => {
+          it('Expects ES6Pakket to own the property ... to be completed or ... removed!', () => {
+            expect(true).to.be.equal(true);
+          });
+
+          describe('Test the owned specific custom properties:', () => {
+            it('Expects ES6Pakket the property ... to be completed or ... removed!', () => {
+              expect(true).to.be.equal(true);
+            });
+          });
+        });
       });
     });
 
+
     describe('Test ES6Pakket constructor:', () => {
-      const o = ES6Pakket();
+      if (type === 'with new') {
+        it('Expects ES6Pakket() without the operator "new" to throw an error.', () => {
+          try {
+            ES6Pakket();
+          } catch (e) {
+            expect(e.message).to.be.a('string').that.is.equal('ES6Pakket needs to be called with the new keyword!');
+          }
+        });
+      }
+
+      const o = type === 'with new' ? new ES6Pakket() : ES6Pakket();
       const op = Object.getOwnPropertyNames(o);
       const io = Object.keys(Object.getPrototypeOf(o));
 
@@ -67,14 +104,13 @@ module.exports = function(ES6Pakket, libname, version) {
         expect(o).to.be.an('object');
       });
 
-      it('Expects ES6Pakket object to own 1 property.', () => {
-        expect(op).to.be.an('array').that.has.lengthOf(1);
+      it(`Expects ES6Pakket object to own ${1 + OWNPROPS} property(ies).`, () => {
+        expect(op).to.be.an('array').that.has.lengthOf(1 + OWNPROPS);
       });
 
-      it('Expects ES6Pakket object to inherit 3 properties.', () => {
-        expect(io).to.be.an('array').that.has.lengthOf(3);
-      });
 
+      // -- This section must not be modified --
+      // _library
       describe('Check the owned generic properties:', () => {
         it('Expects ES6Pakket object to own the property "_library" that is an object.', () => {
           expect(o).to.own.property('_library').that.is.an('object');
@@ -82,18 +118,40 @@ module.exports = function(ES6Pakket, libname, version) {
 
         describe('Test the owned generic properties:', () => {
           it('Expects the property "_library" to own two properties.', () => {
-            expect(Object.keys(o.whoami())).to.be.an('array').that.has.lengthOf(2);
+            expect(Object.keys(o._library)).to.be.an('array').that.has.lengthOf(2);
           });
           it(`Expects the property "_library" to own the property "name" whose value is "${libname}".`, () => {
-            expect(o.whoami()).to.own.property('name').that.is.equal(libname);
+            expect(o._library).to.own.property('name').that.is.equal(libname);
           });
           it(`Expects the property "_library" to own the property "version" whose value is "${version}".`, () => {
-            expect(o.whoami()).to.own.property('version').that.is.equal(version);
+            expect(o._library).to.own.property('version').that.is.equal(version);
+          });
+        });
+
+
+        // -- This section must be adapted --
+        // Add here the owned properties added by your library.
+        describe('Check the owned specific custom properties:', () => {
+          it('Expects ES6Pakket to own the property ... to be completed or ... removed!', () => {
+            expect(true).to.be.equal(true);
+          });
+
+          describe('Test the owned specific custom properties:', () => {
+            it('Expects ES6Pakket the property ... to be completed or ... removed!', () => {
+              expect(true).to.be.equal(true);
+            });
           });
         });
       });
 
+
+      // -- This section must not be modified --
+      // whoami
       describe('Check the inherited generic properties:', () => {
+        it(`Expects ES6Pakket object to inherit ${1 + INHPROPS} property(ies).`, () => {
+          expect(io).to.be.an('array').that.has.lengthOf(1 + INHPROPS);
+        });
+
         it('Expects ES6Pakket object to inherit the property "whoami" that is a function.', () => {
           expect(o).to.have.property('whoami').that.is.a('function');
         });
@@ -114,13 +172,10 @@ module.exports = function(ES6Pakket, libname, version) {
         });
       });
 
-      describe('Check the owned specific properties:', () => {
-        // none,
-        describe('Test the owned specific properties:', () => {
-          // none,
-        });
-      });
 
+      // -- This section must be adapted --
+      // Replace here 'getString' and 'getArray' by the inherited properties
+      // added by your library.
       describe('Check the inherited specific properties:', () => {
         it('Expects ES6Pakket object to inherit the property "getString" that is a function.', () => {
           expect(o).to.have.property('getString').that.is.a('function');

@@ -131,8 +131,8 @@ ES6Pakket.noConflict = function() {
  *
  * @method ()
  * @public
- * @param {}            -,
- * @returns {Object}    returns the library name and version,
+ * @param {}                -,
+ * @returns {Object}        returns the library name and version,
  * @since 0.0.0
  */
 obj.whoami = function() {
@@ -141,6 +141,7 @@ obj.whoami = function() {
 
 /**
  * Returns a string.
+ * (must be deleted)
  *
  * @method ()
  * @public
@@ -154,6 +155,7 @@ obj.getString = function() {
 
 /**
  * Returns an array.
+ * (must be deleted)
  *
  * @method ()
  * @public

@@ -1,13 +1,13 @@
-/* eslint  one-var: 0, import/no-extraneous-dependencies: 0, semi-style: 0,
+/* eslint one-var: 0, import/no-extraneous-dependencies: 0, semi-style: 0,
   object-curly-newline: 0 */
 
 
 // -- Vendor Modules
 const { src, dest, series, parallel } = require('gulp')
-    , del      = require('del')
-    , concat   = require('gulp-concat')
-    , replace  = require('gulp-replace')
-    , Pakket   = require('pakket')
+    , del     = require('del')
+    , concat  = require('gulp-concat')
+    , replace = require('gulp-replace')
+    , Pakket  = require('pakket')
     ;
 
 
@@ -18,12 +18,12 @@ const pack   = require('../package.json')
 
 
 // -- Local Constants
-const destination  = config.libdir
-    , { ES6GLOB }  = config
-    , { source }   = config
-    , exportname   = config.export
-    , { name }     = config
-    , { version }  = pack
+const destination = config.libdir
+    , { ES6GLOB } = config
+    , { source }  = config
+    , exportname  = config.export
+    , { name }    = config
+    , { version } = pack
     ;
 
 
@@ -74,9 +74,10 @@ function doumdlib() {
   ;
 }
 
-function does6lib() {
+// Creates the ES6 module.
+function domodule() {
   let exportM = '\n// -- Export\n';
-  exportM += `export default ${ES6GLOB}.${exportname}`;
+  exportM += `export default ${ES6GLOB}.${exportname};`;
 
   return src(`${destination}/${'generic'}.js`)
     .pipe(replace('{{lib:es6:define}}', `const ${ES6GLOB} = {};`))
@@ -97,6 +98,6 @@ function delgeneric(done) {
 // -- Gulp Public Task(s)
 module.exports = series(
   clean, dogenericlib,
-  parallel(doumdlib, does6lib),
+  parallel(doumdlib, domodule),
   delgeneric,
 );

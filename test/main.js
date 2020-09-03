@@ -33,6 +33,6 @@ const libname = 'ES6Pakket';
 // '{{lib:version}}' as the library version.
 
 describe('Test ES6Pakket:', () => {
-  // testlib(ES6Pakket, '{{lib:name}}', '{{lib:version}}');
-  testlib(ES6Pakket, libname, pack.version);
+  // testlib(ES6Pakket, '{{lib:name}}', '{{lib:version}}', 'without new');
+  testlib(ES6Pakket, libname, pack.version, 'without new');
 });

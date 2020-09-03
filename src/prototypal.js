@@ -145,6 +145,7 @@ methods = {
 
   /**
    * Returns a string.
+   * (must be deleted)
    *
    * @method ()
    * @public
@@ -158,6 +159,7 @@ methods = {
 
   /**
    * Returns an array.
+   * (must be deleted)
    *
    * @method ()
    * @public

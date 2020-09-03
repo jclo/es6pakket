@@ -31,7 +31,7 @@ function fwatch() {
   watch(filesToWatch, series(build));
 }
 
-// -- Gulp connect for dev
+// -- Gulp connect dev
 function devserver(done) {
   connect.server({
     host: '0.0.0.0', // (allows remote access)
@@ -43,7 +43,7 @@ function devserver(done) {
   done();
 }
 
-// -- Gulp connect for prod
+// -- Gulp connect prod
 function appserver(done) {
   connect.server({
     host: '0.0.0.0', // (allows remote access)

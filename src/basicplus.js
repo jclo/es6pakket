@@ -51,7 +51,7 @@ const previousES6Pakket = root.ES6Pakket;
 // -- Local Variables
 
 
-// -- Main -----------------------------------------------------------------
+// -- Public ---------------------------------------------------------------
 
 const ES6Pakket = {
 
@@ -125,6 +125,7 @@ extend(ES6Pakket, {
 
   /**
    * Returns a string.
+   * (must be deleted)
    *
    * @method ()
    * @public
@@ -138,6 +139,7 @@ extend(ES6Pakket, {
 
   /**
    * Returns an array.
+   * (must be deleted)
    *
    * @method ()
    * @public

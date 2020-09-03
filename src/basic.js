@@ -81,7 +81,7 @@ const ES6Pakket = {
    * (must not be deleted)
    *
    * Nota:
-   * Running ES6Pakket in noConflict mode, returns the ES6Pakket variable to
+   * Running ES6Pakket in no conflict mode, returns the ES6Pakket variable to
    * its previous owner.
    *
    * @method ()
@@ -112,6 +112,7 @@ const ES6Pakket = {
 
   /**
    * Returns a string.
+   * (must be deleted)
    *
    * @method ()
    * @public
@@ -125,6 +126,7 @@ const ES6Pakket = {
 
   /**
    * Returns an array.
+   * (must be deleted)
    *
    * @method ()
    * @public
