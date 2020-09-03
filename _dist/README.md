@@ -20,6 +20,11 @@ ES6Pakket relies on [Mocha](https://mochajs.org) and [Chai](http://chaijs.com) f
 
 ES6Pakket uses [Travis CI](https://travis-ci.org) for continuous integration and [Coveralls.io](https://coveralls.io) to display test coverage.
 
+Nota:  
+`ES6Pakket` is a fork of the boilerplate [ES6Kadoo](https://www.npmjs.com/package/@mobilabs/kadoo).
+
+
+
 
 ## Quick Startup
 
@@ -37,15 +42,28 @@ Or, if you don't have the rights to install es6lib globally, you can install it 
 npm install @mobilabs/es6pakket
 ```
 
-Now populate your empty folder and create your first UMD library:
+Then, create a `package.json` file that contains at least:
+
+```json
+{
+  "name": "MyApp",
+  "scripts": {
+    "create": "es6pakket populate --name ${npm_package_name} --author \"${npm_package_writer_name}\" --acronym ${npm_package_writer_acronym} --email ${npm_package_writer_email} --url ${npm_package_writer_url} && npm install"
+  },
+  "writer": {
+    "name": "John Doe",
+    "acronym": "jdo",
+    "email": "jdo@johndoe.com",
+    "url": "http://www.johndoe.com/"
+  }
+}
+```
+Replace `MyApp` by your project name and fill `writer` with your credentials.
+
+And finally, type in the terminal:
 
 ```bash
-// populate
-es6pakket populate -n myapp
-// Or, if you installed the package locally:
-./node_modules/.bin/es6pakket populate -n myapp
-// Install Node.js packages
-npm install
+npm run create.
 ```
 
 Now your folder contains the following files:

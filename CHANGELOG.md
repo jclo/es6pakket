@@ -3,7 +3,7 @@
 ### 1.0.1 (September 3, 2020)
 
   * Fixed a few typos and commented the test suite,
-  * ...,
+  * Release.
 
 
 ### 1.0.0 (August 27, 2020)
