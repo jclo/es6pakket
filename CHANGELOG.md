@@ -4,7 +4,7 @@
 
   * Updated the project dependencies,
   * Made some changes to the README,
-  * ...,
+  * Release.
 
 
 ### 1.0.1 (September 3, 2020)
