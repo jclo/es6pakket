@@ -1,6 +1,6 @@
 {
   "name": "@mobilabs/es6pakket",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A boilerplate for building Javascript ES6 libraries with Pakket",
   "main": "index.js",
   "minified": "_dist/lib/es6pakket.min.js",
@@ -50,7 +50,7 @@
     "coveralls": "^3.1.0",
     "cross-env": "^7.0.2",
     "del": "^5.1.0",
-    "eslint": "^7.7.0",
+    "eslint": "^7.9.0",
     "eslint-config-airbnb-base": "^14.2.0",
     "eslint-plugin-import": "^2.22.0",
     "esm": "^3.2.25",
@@ -60,13 +60,13 @@
     "gulp-header": "^2.0.9",
     "gulp-replace": "^1.0.0",
     "gulp-uglify-es": "^2.0.0",
-    "husky": "^4.2.5",
-    "mocha": "^8.1.2",
+    "husky": "^4.3.0",
+    "mocha": "^8.1.3",
     "nyc": "^15.1.0",
-    "open": "^7.2.0",
-    "opener": "^1.5.1",
+    "open": "^7.2.1",
+    "opener": "^1.5.2",
     "pakket": "^1.0.0",
-    "@mobilabs/es6kadoo": "1.0.2"
+    "@mobilabs/es6kadoo": "^1.0.3"
   },
   "publishConfig": {
     "access": "public"
