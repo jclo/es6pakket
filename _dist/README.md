@@ -146,6 +146,21 @@ On the browser, pick-up the JS file `lib/mylib.js` and add it as a script in you
 </html>
 ```
 
+Or,
+
+```html
+<!DOCTYPE html>
+<html>
+  <body>
+    <script type="module">
+      import mylib from './<path_to_the_lib>/mylib.mjs';
+
+      console.log(mylib.VERSION);
+    </script>
+  </body>
+</html>
+```
+
 Enjoy!
 
 ## License
