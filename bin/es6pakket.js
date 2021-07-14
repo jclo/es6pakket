@@ -50,6 +50,7 @@ const defBoilerLib  = 'ES6Pakket'
     , src         = 'src'
     , test        = 'test'
     , tasks       = 'tasks'
+    , husky       = '.husky'
     , docs        = 'docs'
     // Command line Options
     , opts = {
@@ -150,10 +151,13 @@ const npmignore = [
 // -- Private Functions --------------------------------------------------------
 
 /**
- * Displays help message.
+ * Dispays the help message.
  *
  * @function ()
  * @private
+ * @param {}           -,
+ * @returns {}         -,
+ * @since 0.0.0
  */
 function _help() {
   const message = ['',
@@ -310,6 +314,7 @@ function _customize(source, dest, app, owner, boilerlib) {
     app: obj.scripts.app,
     makeprivate: obj.scripts.makeprivate,
     makelib: obj.scripts.makelib,
+    prepare: obj.scripts.prepare,
     doc: obj.scripts.doc,
   };
   pack.repository = obj.repository;
@@ -327,7 +332,6 @@ function _customize(source, dest, app, owner, boilerlib) {
   pack.devDependencies = obj.devDependencies;
   pack.publishConfig = obj.publishConfig;
   pack.private = obj.private;
-  pack.husky = obj.husky;
 
   pack.devDependencies[`@mobilabs/${boilerlib.toLocaleLowerCase()}`] = version;
 
@@ -404,6 +408,21 @@ function _addTasks(source, dest, folder, app, boilerlib) {
   shell.sed('-i', boilerlib, app, `${dest}/${folder}/config.js`);
   shell.sed('-i', boiler, boilerlib, `${dest}/${folder}/config.js`);
   shell.sed('-i', ver, version, `${dest}/${folder}/config.js`);
+}
+
+/**
+ * Adds Husky Hook.
+ *
+ * @function (arg1, arg2, arg3)
+ * @private
+ * @param {String}          the source path,
+ * @param {String}          the destination path,
+ * @param {String}          the destination folder,
+ * @returns {}              -,
+ */
+function _addHuskyHook(source, dest, folder) {
+  shell.mkdir('-p', `${dest}/${folder}`);
+  shell.cp('-r', `${source}/${folder}/pre-commit`, `${dest}/${folder}/.`);
 }
 
 /**
@@ -503,6 +522,9 @@ function _populate(options) {
 
   // Copy Test Files:
   _addTest(baseboiler, baseapp, test, app, boilerlib);
+
+  // Copy Husky Hook:
+  _addHuskyHook(baseboiler, baseapp, husky, app, boilerlib);
 
   process.stdout.write('Done. Enjoy!\n');
 }

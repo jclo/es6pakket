@@ -27,15 +27,15 @@ module.exports = {
   libdir: './lib',
   libname,
   name,
-
-  // This is the entry javascript file of your library. Choose one
-  // pattern among these ones. The files 'basic.js', 'functional.js',
-  // 'functional-shared.js', 'prototypal.js', 'pseudoclassical.js' and
-  // 'pseudoclassical-auto.js' are mutually exclusives.
-  source,
-  export: exportname,
   index: './index.js',
   distlink: `./_dist/lib/${name}.js`,
+
+  // This is the entry javascript file of your library. Choose one
+  // pattern among the proposed ones in src. The files 'basic.js',
+  // 'functional.js', 'functional-shared.js', 'prototypal.js',
+  // 'pseudoclassical.js' and pseudoclassical-auto.js' are mutually exclusives.
+  source,
+  export: exportname,
 
   get license() {
     return ['/*! ****************************************************************************',

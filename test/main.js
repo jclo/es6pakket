@@ -7,10 +7,8 @@
 
 
 // -- Local Modules
-const ES6Pakket = require('../index')
-    // ES6Pakket = require('../src/prototypal').default
-    , pack      = require('../package.json')
-    , testlib   = require('./int/libprototypal')
+const testlib = require('./int/libprototypal')
+    , pack    = require('../package.json')
     ;
 
 
@@ -23,16 +21,24 @@ const libname = 'ES6Pakket';
 
 // -- Main
 
+// This define root for Node.js:
+global.root = {};
+
 // Nota:
-// If you choose 'ES6Pakket = require('../index')', 'display-coverage' will
-// show the coverage of all the library in one file.
+// If you want that 'display-coverage' shows the coverage files by files,
+// you should set 'ES6Pakket' and 'testlib' like this:
+//  . const ES6Pakket = require('../src/<file>').default;
+//  . testlib(ES6Pakket, '{{lib:name}}', '{{lib:version}}', 'without new');
 //
-// If you want to display the coverage file by file, you must choose
-// 'ES6Pakket = require('../src/prototypal').default'. But, in this case,
-// the build isn't done, so you should pass '{{lib:name}}' as libname and
-// '{{lib:version}}' as the library version.
+// But, if you want that 'display-coverage' shows the coverage in one file,
+// you should set 'ES6Pakket' and 'testlib' like this:
+//  . const ES6Pakket = require('../index');
+//  . testlib(ES6Pakket, libname, pack.version, 'without new');
+
+const ES6Pakket = require('../src/prototypal').default;
+// const ES6Pakket = require('../index');
 
 describe('Test ES6Pakket:', () => {
-  // testlib(ES6Pakket, '{{lib:name}}', '{{lib:version}}', 'without new');
-  testlib(ES6Pakket, libname, pack.version, 'without new');
+  testlib(ES6Pakket, '{{lib:name}}', '{{lib:version}}', 'without new');
+  // testlib(ES6Pakket, libname, pack.version, 'without new');
 });

@@ -18,7 +18,7 @@ ES6Pakket relies on `Pakket` to drastically reduces the amount of extra code add
 
 ES6Pakket relies on [Mocha](https://mochajs.org) and [Chai](http://chaijs.com) for unitary testing. It relies on [Istanbul](https://gotwarlost.github.io/istanbul/) for code coverage.
 
-ES6Pakket uses [Travis CI](https://travis-ci.org) for continuous integration and [Coveralls.io](https://coveralls.io) to display test coverage.
+ES6Pakket uses [Travis CI](https://travis-ci.com) for continuous integration and [Coveralls.io](https://coveralls.io) to display test coverage.
 
 Nota:  
 `ES6Pakket` is a fork of the boilerplate [ES6Kadoo](https://www.npmjs.com/package/@mobilabs/kadoo).
@@ -182,7 +182,7 @@ Enjoy!
 [npm-url]: https://www.npmjs.com/package/@mobilabs/es6pakket
 [release-url]: https://github.com/jclo/es6pakket/tags
 [commit-url]: https://github.com/jclo/es6pakket/commits/master
-[travis-url]: https://travis-ci.org/jclo/es6pakket
+[travis-url]: https://travis-ci.com/jclo/es6pakket
 [coveralls-url]: https://coveralls.io/github/jclo/es6pakket?branch=master
 [dependencies-url]: https://david-dm.org/jclo/es6pakket
 [devdependencies-url]: https://david-dm.org/jclo/es6pakket?type=dev
