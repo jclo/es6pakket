@@ -4,10 +4,10 @@
 [![GitHub last commit][commit-image]][commit-url]
 [![Travis CI][travis-image]][travis-url]
 [![Test coverage][coveralls-image]][coveralls-url]
-[![Dependencies status][dependencies-image]][dependencies-url]
-[![Dev Dependencies status][devdependencies-image]][devdependencies-url]
 [![npm bundle size][npm-bundle-size-image]][npm-bundle-size-url]
 [![License][license-image]](LICENSE.md)
+<!-- [![Dependencies status][dependencies-image]][dependencies-url]
+[![Dev Dependencies status][devdependencies-image]][devdependencies-url] -->
 
 
 ES6Pakket is a boilerplate for writing ES6 Javascript libraries that run on both Node.js and ECMAScript 2015 (ES6) compliant browsers.
@@ -169,20 +169,20 @@ Enjoy!
 
 <!--- URls -->
 
-[npm-image]: https://img.shields.io/npm/v/@mobilabs/es6pakket.svg?style=flat-square
-[release-image]: https://img.shields.io/github/release/jclo/es6pakket.svg?include_prereleases&style=flat-square
-[commit-image]: https://img.shields.io/github/last-commit/jclo/es6pakket.svg?style=flat-square
-[travis-image]: https://img.shields.io/travis/jclo/es6pakket.svg?style=flat-square
-[coveralls-image]: https://img.shields.io/coveralls/jclo/es6pakket/master.svg?style=flat-square
+[npm-image]: https://img.shields.io/npm/v/@mobilabs/es6pakket.svg?logo=npm&logoColor=fff&label=NPM+package
+[release-image]: https://img.shields.io/github/release/jclo/es6pakket.svg?include_prereleases
+[commit-image]: https://img.shields.io/github/last-commit/jclo/es6pakket.svg?logo=github
+[travis-image]: https://img.shields.io/travis/com/jclo/es6pakket.svg?logo=travis-ci&logoColor=fff
+[coveralls-image]: https://img.shields.io/coveralls/jclo/es6pakket/master.svg?&logo=coveralls
 [dependencies-image]: https://david-dm.org/jclo/es6pakket/status.svg?theme=shields.io
 [devdependencies-image]: https://david-dm.org/jclo/es6pakket/dev-status.svg?theme=shields.io
-[npm-bundle-size-image]: https://img.shields.io/bundlephobia/minzip/@mobilabs/es6pakket.svg?style=flat-square
-[license-image]: https://img.shields.io/npm/l/@mobilabs/es6pakket.svg?style=flat-square
+[npm-bundle-size-image]: https://img.shields.io/bundlephobia/minzip/@mobilabs/es6pakket.svg
+[license-image]: https://img.shields.io/npm/l/@mobilabs/es6pakket.svg
 
 [npm-url]: https://www.npmjs.com/package/@mobilabs/es6pakket
 [release-url]: https://github.com/jclo/es6pakket/tags
 [commit-url]: https://github.com/jclo/es6pakket/commits/master
-[travis-url]: https://travis-ci.com/jclo/es6pakket
+[travis-url]: https://app.travis-ci.com/jclo/es6pakket?branch=main
 [coveralls-url]: https://coveralls.io/github/jclo/es6pakket?branch=master
 [dependencies-url]: https://david-dm.org/jclo/es6pakket
 [devdependencies-url]: https://david-dm.org/jclo/es6pakket?type=dev
