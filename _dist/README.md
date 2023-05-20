@@ -36,7 +36,7 @@ Then, you just need to create a `package.json` file that contains:
   "name": "NameOfYourProject",
   "scripts": {
     "create": "npm install @mobilabs/es6pakket && npm run populate",
-    "populate": "es6pakket populate --name $npm_package_name --author $npm_package_config_name --acronym $npm_package_config_acronym --email $npm_package_config_email --url $npm_package_config_url && npm install && npm run build && npm run test && npm run report"
+    "populate": "es6pakket populate --name $npm_package_name --author $npm_package_config_name --acronym $npm_package_config_acronym --email $npm_package_config_email --url $npm_package_config_url && npm install && npm run build:dev && npm run test && npm run report"
   },
   "config": {
     "name": "John Doe",
@@ -65,7 +65,7 @@ Your project Folder
       |   |_ ...
       |   |_ ...
       |_ tasks
-      |   |_ ...              // The Gulp tasks to build your project,
+      |   |_ ...              // The tasks to build your project,
       |_  test
       |     |_ main.js        // Your Mocha, Chai test file,
       |_ .eslintignore        // Files to be ignored by ESLint,
@@ -73,7 +73,6 @@ Your project Folder
       |_ .gitignore           // Files that Git must ignore (if you use git),
       |_ .travis.yml          // A configuration file for Travis CI (if you use it),
       |_ .CHANGELOG.md        // The changes between your different versions,
-      |_ .gulpfile.js         // The main Gulp task,
       |_ index.js             // The link to your ES5 library,
       |_ LICENSE.md           // The license that applies to your library (here MIT),
       |_ package-lock.json    // The NPM dependency tree,
@@ -86,10 +85,10 @@ This folder is now a NPM package.
 
 ## How to build it
 
-The file `gulpfile.js` contains the build instructions. These instructions populate the folder `lib` from the sources files included in the folder `src`.
+The file `package.json` contains the build instructions. These instructions populate the folder `lib` from the sources files included in the folder `src`.
 
-`gulpfile.js` implements two operations for the build:
-  * the command `npm run build` creates the library at the execution,
+`package.json` implements two operations for the build:
+  * the command `npm run build:dev` creates the library at the execution,
   * and the command `npm run watch` updates the library when one of the source files is modified.
 
 
@@ -98,23 +97,23 @@ The file `gulpfile.js` contains the build instructions. These instructions popul
 Your `package.json` file contains three scripts to test your UMD library:
 
   * `npm run test`,
-  * `npm run check-coverage`,
-  * `npm run display-coverage`.
+  * `npm run check:coverage`,
+  * `npm run display:coverage`.
 
 `npm run test` executes the tests and computes the test coverage.
 
-`npm run check-coverage` checks if the test coverage matches the requirements. Here 100%.
+`npm run check:coverage` checks if the test coverage matches the requirements. Here 100%.
 
-`npm run display-coverage` opens your browser and reports the test coverage.
+`npm run display:coverage` opens your browser and reports the test coverage.
 
 
 ## How to create a distribution version
 
 Your `package.json` file contains a script to build a distribution library:
 
-  * `npm run makedist`
+  * `npm run build:prod`
 
-The script `makedist` adds a license header to the library and creates a minified version.
+The script `build:prod` adds a license header to the library and creates a minified version.
 
 
 ## How to use it

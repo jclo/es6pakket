@@ -3,11 +3,8 @@
 
 
 // -- Vendor Modules
-const { src, dest, series, parallel } = require('gulp')
-    , del     = require('del')
-    , concat  = require('gulp-concat')
-    , replace = require('gulp-replace')
-    , Pakket  = require('pakket')
+const fs     = require('fs')
+    , Pakket = require('pakket')
     ;
 
 
@@ -22,6 +19,7 @@ const destination = config.libdir
     , { ES6GLOB } = config
     , { source }  = config
     , exportname  = config.export
+    , { libname } = config
     , { name }    = config
     , { version } = pack
     ;
@@ -30,76 +28,122 @@ const destination = config.libdir
 // -- Local Variables
 
 
-// -- Gulp Private Tasks
+// -- Private Tasks
 
-// Removes the previous version.
-function clean(done) {
-  del.sync(destination);
-  done();
+/**
+ * Removes the previous version.
+ */
+function clean() {
+  const d1 = new Date();
+  process.stdout.write('Starting \'\x1b[36mclean\x1b[89m\x1b[0m\'...\n');
+
+  fs.rmSync(destination, { force: true, recursive: true });
+  fs.mkdirSync(destination, { recursive: true });
+
+  const d2 = new Date() - d1;
+  process.stdout.write(`Finished '\x1b[36mclean\x1b[89m\x1b[0m' after \x1b[35m${d2} ms\x1b[89m\x1b[0m\n`);
 }
 
-// Creates the library.
-function dogenericlib() {
+
+/**
+ * Creates the content.
+ */
+function dogenericlib(done) {
+  const d1 = new Date();
+  process.stdout.write('Starting \'\x1b[36mdogenericlib\x1b[89m\x1b[0m\'...\n');
+
   const pakket = Pakket(source, { export: exportname, type: 'generic' });
+  pakket.get((data) => {
+    const f = data
+      .replace(/{{lib:name}}/g, libname)
+      .replace(/{{lib:version}}/g, version)
+      // Remove extra global.
+      // (keep the first global only)
+      .replace(/\/\* global/, '/* gloobal')
+      .replace(/\/\* global[\w$_\s,]+\*\//g, '/* - */')
+      .replace(/\/\* gloobal/, '/* global')
+      // Remove extra 'use strict'.
+      // (keep the two first only)
+      .replace(/use strict/, 'use_strict')
+      .replace(/use strict/, 'use_strict')
+      .replace(/'use strict';/g, '/* - */')
+      .replace(/use_strict/g, 'use strict')
+    ;
 
-  return pakket.bundle()
-    .pipe(replace('{{lib:name}}', exportname))
-    .pipe(replace('{{lib:version}}', version))
-
-    // Remove extra global.
-    // (keep the first global only)
-    .pipe(replace(/\/\* global/, '/* gloobal'))
-    .pipe(replace(/\/\* global[\w$_\s,]+\*\//g, '/* - */'))
-    .pipe(replace(/\/\* gloobal/, '/* global'))
-
-    // Remove extra 'use strict'.
-    // (keep the two first only)
-    .pipe(replace(/use strict/, 'use_strict'))
-    .pipe(replace(/use strict/, 'use_strict'))
-    .pipe(replace(/'use strict';/g, '/* - */'))
-    .pipe(replace(/use_strict/g, 'use strict'))
-
-    .pipe(concat(`${'generic'}.js`))
-    .pipe(dest(destination))
-  ;
+    fs.writeFileSync(`${destination}/generic.js`, f);
+    const d2 = new Date() - d1;
+    process.stdout.write(`Finished '\x1b[36mdogenericlib\x1b[89m\x1b[0m' after \x1b[35m${d2} ms\x1b[89m\x1b[0m\n`);
+    done();
+  });
 }
 
-// Create the UMD Module.
+
+/**
+ * Create the UMD Module.
+ */
 function doumdlib() {
-  return src(`${destination}/${'generic'}.js`)
-    .pipe(replace('{{lib:es6:define}}\n', ''))
-    .pipe(replace('{{lib:es6:link}}', 'this'))
-    .pipe(replace('{{lib:es6:export}}\n', ''))
-    .pipe(concat(`${name}.js`))
-    .pipe(dest(destination))
+  const d1 = new Date();
+  process.stdout.write('Starting \'\x1b[36mdoumdlib\x1b[89m\x1b[0m\'...\n');
+
+  const f = fs.readFileSync(`${destination}/${'generic'}.js`, 'utf-8')
+    .replace('{{lib:es6:define}}\n', '')
+    .replace('{{lib:es6:link}}', 'this')
+    .replace('{{lib:es6:export}}\n', '')
   ;
+
+  fs.writeFileSync(`${destination}/${name}.js`, f);
+  const d2 = new Date() - d1;
+  process.stdout.write(`Finished '\x1b[36mdoumdlib\x1b[89m\x1b[0m' after \x1b[35m${d2} ms\x1b[89m\x1b[0m\n`);
 }
 
-// Creates the ES6 module.
+
+/**
+ * Creates the ES6 module.
+ */
 function domodule() {
+  const d1 = new Date();
+  process.stdout.write('Starting \'\x1b[36mdomodule\x1b[89m\x1b[0m\'...\n');
+
   let exportM = '\n// -- Export\n';
-  exportM += `export default ${ES6GLOB}.${exportname};`;
+  exportM += `export default ${ES6GLOB}.${libname};`;
 
-  return src(`${destination}/${'generic'}.js`)
-    .pipe(replace('{{lib:es6:define}}', `const ${ES6GLOB} = {};`))
-    .pipe(replace('{{lib:es6:link}}', ES6GLOB))
-    .pipe(replace('{{lib:es6:export}}', exportM))
-    .pipe(concat(`${name}.mjs`))
-    .pipe(dest(destination))
+  const f = fs.readFileSync(`${destination}/${'generic'}.js`, 'utf-8')
+    .replace('{{lib:es6:define}}', `const ${ES6GLOB} = {};`)
+    .replace('{{lib:es6:link}}', ES6GLOB)
+    .replace('{{lib:es6:export}}', exportM)
   ;
+
+  fs.writeFileSync(`${destination}/${name}.mjs`, f);
+  const d2 = new Date() - d1;
+  process.stdout.write(`Finished '\x1b[36mdomodule\x1b[89m\x1b[0m' after \x1b[35m${d2} ms\x1b[89m\x1b[0m\n`);
 }
 
-// Removes the temp file(s).
-function delgeneric(done) {
-  del.sync(`${destination}/generic.js`);
-  done();
+
+/**
+ * Removes the temp file(s).
+ */
+function delcore() {
+  const d1 = new Date();
+  process.stdout.write('Starting \'\x1b[36mdelcore\x1b[89m\x1b[0m\'...\n');
+  fs.unlinkSync(`${destination}/generic.js`);
+
+  const d2 = new Date() - d1;
+  process.stdout.write(`Finished '\x1b[36mdelcore\x1b[89m\x1b[0m' after \x1b[35m${d2} ms\x1b[89m\x1b[0m\n`);
 }
 
 
-// -- Gulp Public Task(s)
-module.exports = series(
-  clean,
-  dogenericlib,
-  parallel(doumdlib, domodule),
-  delgeneric,
-);
+// -- Public Task(s)
+const d1 = new Date();
+process.stdout.write('Starting \'\x1b[36mbuild:js:dev\x1b[89m\x1b[0m\'...\n');
+clean();
+dogenericlib(() => {
+  doumdlib();
+  domodule();
+  delcore();
+
+  const d2 = new Date() - d1;
+  process.stdout.write(`Finished '\x1b[36mbuild:js:dev\x1b[89m\x1b[0m' after \x1b[35m${d2} ms\x1b[89m\x1b[0m\n`);
+});
+
+
+// -- oOo --
