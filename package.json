@@ -1,6 +1,6 @@
 {
   "name": "@mobilabs/es6pakket",
-  "version": "1.0.9x",
+  "version": "1.0.10",
   "description": "A boilerplate for building Javascript ES6 libraries with Pakket",
   "main": "_dist/lib/es6pakket.js",
   "minified": "_dist/lib/es6pakket.min.js",
