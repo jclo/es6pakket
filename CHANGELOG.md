@@ -2,8 +2,8 @@
 
 ### 1.1.0 (May 24, 2023)
 
-  *  Updated and standardized the npm build scripts,
-  * ...,
+  * Updated and standardized the npm build scripts,
+  * Release. 
 
 
 ### 1.0.10 (May 20, 2023)
