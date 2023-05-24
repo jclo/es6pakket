@@ -1,6 +1,6 @@
 {
   "name": "@mobilabs/es6pakket",
-  "version": "1.0.10",
+  "version": "1.0.10x",
   "description": "A boilerplate for building Javascript ES6 libraries with Pakket",
   "main": "_dist/lib/es6pakket.js",
   "minified": "_dist/lib/es6pakket.min.js",
@@ -13,8 +13,9 @@
     "general": " --- GENERAL ---",
 
     "build:js": " --- JAVASCRIPT --- ",
-    "build:js:dev": "node tasks/makejs.js",
-    "build:js:prod": "node tasks/makedist.js",
+
+    "build:js:dev": "node tasks/build.js.dev.js $1",
+    "build:js:prod": "node tasks/build.js.prod.js $1",
 
     "build:css": " --- CSS --- ",
 
@@ -24,7 +25,8 @@
     "build:dev": "npm run build:js:dev",
 
     "build:production": " --- BUILD (PRODUCTION) --- ",
-    "prebuild:prod": "npm run build:dev",
+    "build:skeleton:prod": "node tasks/build.skeleton.prod.js $1",
+    "prebuild:prod": "npm run build:dev && npm run build:skeleton:prod",
     "build:prod": "npm run build:js:prod",
 
     "testing": " --- TESTING --- ",
@@ -43,7 +45,8 @@
     "watch": "npm run watch:js",
 
     "deployment": " --- DEPLOYMENT --- ",
-    "dep:private": "npm run build:prod && node tasks/makeprivatepackage.js && sh tasks/compress.sh ${npm_package_name} ${npm_package_version} @mobilabs",
+    "dep:prod": "rm -rf _dist-$npm_package_version && npm run build:prod && cp -r _dist _dist-$npm_package_version",
+    "dep:private": "npm run build:prod && node tasks/dep.private.js && sh tasks/compress.sh ${npm_package_name} ${npm_package_version} @mobilabs",
 
     "others": " --- OTHERS ---",
     "prepare": "husky install",
@@ -85,7 +88,7 @@
     "nyc": "^15.1.0",
     "pakket": "^1.0.7",
     "terser": "^5.17.4",
-    "@mobilabs/es6kadoo": "1.0.12"
+    "@mobilabs/es6kadoo": "1.1.0"
   },
   "publishConfig": {
     "access": "public"

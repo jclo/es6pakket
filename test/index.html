@@ -3,7 +3,7 @@
 <html class="no-js" lang="">
   <head>
     <meta charset="utf-8">
-    <title>View ES6Kadoo</title>
+    <title>View ES6Pakket</title>
     <meta name="description" content="{{app:description}}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -40,17 +40,17 @@
 
     <!-- Add your scripts here -->
     <script type="module">
-      import ES6Kadoo from '../lib/es6kadoo.mjs';
+      import ES6Pakket from '../lib/es6pakket.mjs';
 
-      console.log(ES6Kadoo.VERSION);
-      console.log(Object.keys(ES6Kadoo));
+      console.log(ES6Pakket.VERSION);
+      console.log(Object.keys(ES6Pakket));
 
-      const lib = ES6Kadoo();
+      const lib = ES6Pakket();
       console.log(lib.getString());
       console.log(lib.getArray());
 
       const el = document.getElementById('app');
-      el.append(`Es6lib $v${ES6Kadoo.VERSION}`);
+      el.append(`ES6Pakket $v${ES6Pakket.VERSION}`);
       el.append(`   ... ${lib.getString()}`);
       el.append(`   ... ${lib.getArray()}`);
 
