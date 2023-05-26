@@ -2,6 +2,7 @@
 __trash
 _old_*
 __old_*
+z_*
 
 .nyc_output
 coverage

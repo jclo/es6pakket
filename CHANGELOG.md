@@ -1,5 +1,11 @@
 ### HEAD
 
+### 1.1.1 (May 26, 2023)
+
+  * Fixed a few typos,
+  * ...,
+
+
 ### 1.1.0 (May 24, 2023)
 
   * Updated and standardized the npm build scripts,
