@@ -1,10 +1,10 @@
 ### HEAD
 
-### 1.1.x (January 9, 2024)
+### 2.0.0 (January 9, 2024)
 
   * Updated the project with @ES6Kadoo v2 (c8, Github Actions),
   * Renamed .github/.github/workflows/ci.yml -> .github/workflows/ci.yml,
-  * ...
+  * Release.
 
 
 ### 1.1.1 (May 26, 2023)
