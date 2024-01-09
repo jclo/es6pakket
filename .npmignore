@@ -1,6 +1,7 @@
 *
 
 !_dist/**/*
+!.github/**/*
 !.husky/pre-commit
 !bin
 !src/**/*
@@ -8,7 +9,6 @@
 !test/**/*
 !.eslintignore
 !.eslintrc
-!.travis.yml
 !gulpfile.js
 !index.js
 !rmdstore.sh

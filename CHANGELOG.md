@@ -1,5 +1,11 @@
 ### HEAD
 
+### 1.1.x (January 9, 2024)
+
+  * Updated the project with @ES6Kadoo v2 (c8, Github Actions),
+  * ...
+
+
 ### 1.1.1 (May 26, 2023)
 
   * Fixed a few typos,
