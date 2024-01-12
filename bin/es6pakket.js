@@ -92,6 +92,9 @@ const readme = [
   ' ',
   'MIT.',
   '',
+  '',
+  '-- oOo --',
+  '',
 ].join('\n');
 
 const license = [
@@ -127,7 +130,11 @@ const changelog = [
   '',
   '  * Initial commit,',
   '  * ...,',
-  ''].join('\n');
+  '',
+  '',
+  '-- oOo --',
+  '',
+].join('\n');
 
 const index = [
   "module.exports = require('./lib/{{lib:lowname}}');",
@@ -304,23 +311,11 @@ function _customize(source, dest, app, owner, boilerlib) {
   pack.unpkg = `_dist/lib/${app.toLowerCase()}.mjs`;
   pack.module = `_dist/lib/${app.toLowerCase()}.min.mjs`;
   pack.bin = {};
-  // pack.scripts = {
-  //   build: obj.scripts.build,
-  //   watch: obj.scripts.watch,
-  //   dev: obj.scripts.dev,
-  //   test: obj.scripts.test,
-  //   'display-coverage': obj.scripts['display-coverage'],
-  //   'check-coverage': obj.scripts['check-coverage'],
-  //   'report-coverage': obj.scripts['report-coverage'],
-  //   report: obj.scripts.report,
-  //   makedist: obj.scripts.makedist,
-  //   app: obj.scripts.app,
-  //   makeprivate: obj.scripts.makeprivate,
-  //   makelib: obj.scripts.makelib,
-  //   prepare: obj.scripts.prepare,
-  //   doc: obj.scripts.doc,
-  // };
+
   pack.scripts = obj.scripts;
+  pack.scripts['check:coverage'] = 'c8 check-coverage --statements 100 --branches 100 --functions 100 --lines 100';
+  delete pack.scripts['dep:private:package'];
+
   pack.repository = obj.repository;
   pack.repository.url = `https://github.com/${owner.acronym}/${app.toLowerCase()}.git`;
   pack.keywords = ['ES6'];
@@ -334,6 +329,7 @@ function _customize(source, dest, app, owner, boilerlib) {
   pack.homepage = `https://github.com/${owner.acronym}/${app.toLowerCase()}`;
   pack.dependencies = obj.dependencies;
   pack.devDependencies = obj.devDependencies;
+  pack.c8 = obj.c8;
   pack.publishConfig = obj.publishConfig;
   pack.private = obj.private;
 
