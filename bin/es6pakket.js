@@ -52,7 +52,7 @@ const defBoilerLib  = 'ES6Pakket'
     , { version } = require('../package.json')
     , src         = 'src'
     , test        = 'test'
-    , tasks       = 'tasks'
+    , scripts     = 'scripts'
     , husky       = '.husky'
     , docs        = 'docs'
     // Command line Options
@@ -143,7 +143,6 @@ const index = [
 const gitignore = [
   '.DS_Store',
   '',
-  '.nyc_output',
   'coverage',
   'node_modules',
   ''].join('\n');
@@ -315,6 +314,7 @@ function _customize(source, dest, app, owner, boilerlib) {
   pack.scripts = obj.scripts;
   pack.scripts['check:coverage'] = 'c8 check-coverage --statements 100 --branches 100 --functions 100 --lines 100';
   delete pack.scripts['dep:private:package'];
+  delete pack.scripts['dep:npm:private:package'];
 
   pack.repository = obj.repository;
   pack.repository.url = `https://github.com/${owner.acronym}/${app.toLowerCase()}.git`;
@@ -378,7 +378,7 @@ function _addSrc(source, dest, folder, app, boilerlib) {
 }
 
 /**
- * Adds the task files.
+ * Adds the script files.
  *
  * @function (arg1, arg2, arg3, arg4, arg5)
  * @private
@@ -389,7 +389,7 @@ function _addSrc(source, dest, folder, app, boilerlib) {
  * @param {String}          the name of the boilerplate,
  * @returns {}              -,
  */
-function _addTasks(source, dest, folder, app, boilerlib) {
+function _addScripts(source, dest, folder, app, boilerlib) {
   const exclude = []
       , boiler  = '{{boiler:name}}'
       , ver     = '{{boiler:name:version}}'
@@ -531,8 +531,8 @@ function _populate(options) {
   // Copy the src files:
   _addSrc(baseboiler, baseapp, src, app, boilerlib);
 
-  // Add tasks:
-  _addTasks(baseboiler, baseapp, tasks, app, boilerlib);
+  // Add scripts:
+  _addScripts(baseboiler, baseapp, scripts, app, boilerlib);
 
   // Copy Test Files:
   _addTest(baseboiler, baseapp, test, app, boilerlib);

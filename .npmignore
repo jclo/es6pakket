@@ -4,8 +4,8 @@
 !.github/**/*
 !.husky/pre-commit
 !bin
+!scripts/**/*
 !src/**/*
-!tasks/**/*
 !test/**/*
 !.eslintignore
 !.eslintrc

@@ -8,3 +8,4 @@ _dist-*
 coverage
 node_modules
 private_repo
+npm_private_repo
