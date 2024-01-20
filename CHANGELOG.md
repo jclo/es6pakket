@@ -1,9 +1,9 @@
 ### HEAD
 
-### 2.1.x (January 20, 2024)
+### 2.1.0 (January 20, 2024)
 
   * Updated the project with @mobilabs/es6kadoo v2.1.0,
-  * ...,
+  * Release.
 
 
 ### 2.0.1 (January 11, 2024)
