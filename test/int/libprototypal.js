@@ -209,3 +209,5 @@ module.exports = function(ES6Pakket, libname, version, type) {
     });
   });
 };
+
+// - oOo --
