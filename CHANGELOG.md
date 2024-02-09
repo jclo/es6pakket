@@ -3,7 +3,7 @@
 ### 2.1.1 (February 9, 2024)
 
   * Updated the project with @mobilabs/es6kadoo v2.1.1 (improved build scripts),
-  * ...,
+  * Release.
 
 
 ### 2.1.0 (January 20, 2024)
