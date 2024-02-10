@@ -1,3 +1,16 @@
+/** ************************************************************************
+ *
+ * Configuration file.
+ *
+ *
+ *
+ * @namespace    -
+ * @dependencies none
+ * @exports      -
+ * @author       -
+ * @since        0.0.0
+ * @version      -
+ * ********************************************************************** */
 /* eslint one-var: 0, semi-style: 0 */
 
 
@@ -23,6 +36,7 @@ const libname    = 'ES6Pakket'
 
 module.exports = {
   ES6GLOB: '$__ES6GLOB',
+  root: '.',
   dist: './_dist',
   libdir: './lib',
   libname,

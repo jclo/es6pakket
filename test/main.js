@@ -43,4 +43,5 @@ describe('Test ES6Pakket:', () => {
   // testlib(ES6Pakket, libname, pack.version, 'without new');
 });
 
+
 // - oOo --
