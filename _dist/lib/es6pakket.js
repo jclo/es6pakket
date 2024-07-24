@@ -1,5 +1,5 @@
 /*! ****************************************************************************
- * ES6Pakket v2.2.x
+ * ES6Pakket v2.2.0
  *
  * A boilerplate for building Javascript ES6 libraries with Pakket.
  * (you can download it from npm or github repositories)
@@ -113,14 +113,14 @@
       const obj = Object.create(methods);
       obj._library = {
         name: 'ES6Pakket',
-        version: '2.2.x',
+        version: '2.2.0',
       };
       return obj;
     };
 
     // Attaches constants to ES6Pakket that provide name and version of the lib.
     ES6Pakket.NAME = 'ES6Pakket';
-    ES6Pakket.VERSION = '2.2.x';
+    ES6Pakket.VERSION = '2.2.0';
 
 
     // -- Private Static Methods -----------------------------------------------
