@@ -30,7 +30,8 @@
  * @since        0.0.0
  * @version      -
  * ********************************************************************** */
-/* global */
+/* global root */
+/* - */
 
 
 // -- Vendor Modules
@@ -91,7 +92,7 @@ const ES6Pakket = {
    * @since 0.0.0
    */
   noConflict() {
-    globalThis.ES6Pakket = previousES6Pakket;
+    root.ES6Pakket = previousES6Pakket;
     return this;
   },
 
@@ -116,7 +117,7 @@ ES6Pakket.VERSION = '{{lib:version}}';
 
 // Saves the previous value of the library variable, so that it can be
 // restored later on, if noConflict is used.
-const previousES6Pakket = globalThis.ES6Pakket;
+const previousES6Pakket = root.ES6Pakket;
 
 
 // Extends ES6Pakket with new static methods.
@@ -154,3 +155,5 @@ extend(ES6Pakket, {
 
 // -- Export
 export default ES6Pakket;
+
+/* - */

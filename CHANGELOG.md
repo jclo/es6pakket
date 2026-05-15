@@ -3,6 +3,7 @@
 ### 3.0.0 (May, 15, 2026)
 
   * Updated the project to comply with ESM,
+  * Back to root (remove globalThis),
   * ...,
 
 

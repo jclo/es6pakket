@@ -1,5 +1,5 @@
 /*! ****************************************************************************
- * ES6Pakket v3.0.0-beta.1.0
+ * ES6Pakket v3.0.0-beta.1.1
  *
  * A boilerplate for building Javascript ES6 libraries with Pakket.
  * (you can download it from npm or github repositories)
@@ -74,6 +74,8 @@
      * @since        0.0.0
      * @version      -
      * ********************************************************************** */
+    /* - */
+    /* - */
 
 
     // -- Vendor Modules
@@ -105,18 +107,18 @@
       const obj = Object.create(methods);
       obj._library = {
         name: 'ES6Pakket',
-        version: '3.0.0-beta.1.0',
+        version: '3.0.0-beta.1.1',
       };
       return obj;
     };
 
     // Attaches constants to ES6Pakket that provide name and version of the lib.
     ES6Pakket.NAME = 'ES6Pakket';
-    ES6Pakket.VERSION = '3.0.0-beta.1.0';
+    ES6Pakket.VERSION = '3.0.0-beta.1.1';
 
     // Saves the previous value of the library variable, so that it can be
     // restored later on, if noConflict is used.
-    const previousES6Pakket = globalThis.ES6Pakket;
+    const previousES6Pakket = root.ES6Pakket;
 
 
     // -- Private Static Methods -----------------------------------------------
@@ -153,7 +155,7 @@
      * @since 0.0.0
      */
     ES6Pakket.noConflict = function() {
-      globalThis.ES6Pakket = previousES6Pakket;
+      root.ES6Pakket = previousES6Pakket;
       return this;
     };
 
@@ -210,6 +212,8 @@
     /* eslint-disable-next-line no-param-reassign */
     module.exports = ES6Pakket;
 
+    /* - */
+
   /* eslint-disable-next-line */
   }, { './util/util.js': 2 }],
 
@@ -240,6 +244,7 @@
      * @since        0.0.0
      * @version      -
      * ********************************************************************** */
+    /* - */
     /* - */
 
 

@@ -64,3 +64,5 @@ const extend = function(object, methods) {
 
 // -- Export
 export default extend;
+
+/* - */

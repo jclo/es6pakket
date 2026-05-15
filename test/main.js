@@ -20,6 +20,9 @@ const libname = 'ES6Pakket';
 
 // -- Main
 
+// This define root for Node.js:
+global.root = {};
+
 // Nota:
 // If you want that 'display-coverage' shows the coverage files by files,
 // you should set 'ES6Pakket' and 'testlib' like this:
@@ -31,8 +34,8 @@ const libname = 'ES6Pakket';
 //  . import ES6Pakket from '../index.js';
 //  . testlib(ES6Pakket, libname, pack.version, 'without new');
 
-import ES6Pakket from '../src/prototypal.js';
-// import ES6Pakket from '../index.js';
+const ES6Pakket = (await import('../src/prototypal.js')).default;
+// const ES6Pakket (await import('../index.js')).default;
 
 describe('Test ES6Pakket:', () => {
   testlib(ES6Pakket, '{{lib:name}}', '{{lib:version}}', 'without new');

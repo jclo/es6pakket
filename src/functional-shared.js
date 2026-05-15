@@ -36,7 +36,8 @@
  * @since        0.0.0
  * @version      -
  * ********************************************************************** */
-/* global */
+/* global root */
+/* - */
 
 
 // -- Vendor Modules
@@ -81,7 +82,7 @@ ES6Pakket.VERSION = '{{lib:version}}';
 
 // Saves the previous value of the library variable, so that it can be
 // restored later on, if noConflict is used.
-const previousES6Pakket = globalThis.ES6Pakket;
+const previousES6Pakket = root.ES6Pakket;
 
 
 // -- Private Static Methods -----------------------------------------------
@@ -118,7 +119,7 @@ ES6Pakket._setTestMode = function() {
  * @since 0.0.0
  */
 ES6Pakket.noConflict = function() {
-  globalThis.ES6Pakket = previousES6Pakket;
+  root.ES6Pakket = previousES6Pakket;
   return this;
 };
 
@@ -173,3 +174,5 @@ const methods = {
 
 // -- Export
 export default ES6Pakket;
+
+/* - */
