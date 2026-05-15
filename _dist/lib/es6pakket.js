@@ -1,9 +1,9 @@
 /*! ****************************************************************************
- * ES6Pakket v2.2.0
+ * ES6Pakket v3.0.0-beta.1.0
  *
  * A boilerplate for building Javascript ES6 libraries with Pakket.
  * (you can download it from npm or github repositories)
- * Copyright (c) 2024 Mobilabs <contact@mobilabs.fr> (https://www.mobilabs.fr).
+ * Copyright (c) 2026 Mobilabs <contact@mobilabs.fr> (https://www.mobilabs.fr).
  * Released under the MIT license. You may obtain a copy of the License
  * at: http://www.opensource.org/licenses/mit-license.php).
  * Built from {{boiler:name}} v{{boiler:name:version}}.
@@ -74,27 +74,19 @@
      * @since        0.0.0
      * @version      -
      * ********************************************************************** */
-    /* - */
-    /* eslint-disable one-var, semi-style, no-underscore-dangle */
 
 
     // -- Vendor Modules
 
 
     // -- Local Modules
-    const Util = impoort('./util/util');
+    const Util = impoort('./util/util.js');
 
 
     // -- Local Constants
-    // Saves the previous value of the library variable, so that it can be
-    // restored later on, if noConflict is used.
-    const previousES6Pakket = root.ES6Pakket
-        ;
 
 
     // -- Local Variables
-    let methods
-      ;
 
 
     // -- Public ---------------------------------------------------------------
@@ -113,14 +105,18 @@
       const obj = Object.create(methods);
       obj._library = {
         name: 'ES6Pakket',
-        version: '2.2.0',
+        version: '3.0.0-beta.1.0',
       };
       return obj;
     };
 
     // Attaches constants to ES6Pakket that provide name and version of the lib.
     ES6Pakket.NAME = 'ES6Pakket';
-    ES6Pakket.VERSION = '2.2.0';
+    ES6Pakket.VERSION = '3.0.0-beta.1.0';
+
+    // Saves the previous value of the library variable, so that it can be
+    // restored later on, if noConflict is used.
+    const previousES6Pakket = globalThis.ES6Pakket;
 
 
     // -- Private Static Methods -----------------------------------------------
@@ -157,15 +153,14 @@
      * @since 0.0.0
      */
     ES6Pakket.noConflict = function() {
-      /* eslint-disable-next-line no-param-reassign */
-      root.ES6Pakket = previousES6Pakket;
+      globalThis.ES6Pakket = previousES6Pakket;
       return this;
     };
 
 
     // -- Public Methods -------------------------------------------------------
 
-    methods = {
+    const methods = {
 
       /**
        * Returns the library name and version.
@@ -215,13 +210,11 @@
     /* eslint-disable-next-line no-param-reassign */
     module.exports = ES6Pakket;
 
-    /* eslint-enable one-var, semi-style, no-underscore-dangle */
-
   /* eslint-disable-next-line */
-  }, { './util/util': 2 }],
+  }, { './util/util.js': 2 }],
 
   /* eslint-disable-next-line no-unused-vars */
-  2: ['./src/util/util', function(impoort, module, exports) {
+  2: ['./src/util/util.js', function(impoort, module, exports) {
     /** ************************************************************************
      *
      * A ...
@@ -248,7 +241,6 @@
      * @version      -
      * ********************************************************************** */
     /* - */
-    /* eslint-disable no-underscore-dangle */
 
 
     // -- Vendor Modules
@@ -327,8 +319,6 @@
     // -- Export
     /* eslint-disable-next-line no-param-reassign */
     module.exports = Util;
-
-    /* eslint-enable no-underscore-dangle */
   }, {}],
 
 /* eslint-disable-next-line */

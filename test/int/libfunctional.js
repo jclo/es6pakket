@@ -4,8 +4,7 @@
 
 
 // -- Vendor Modules
-const { expect } = require('chai')
-    ;
+import { expect } from 'chai';
 
 
 // -- Local Modules
@@ -26,7 +25,7 @@ const LIBPROPS = 0
 
 
 // -- Main
-module.exports = function(ES6Pakket, libname, version) {
+export default function(ES6Pakket, libname, version) {
   describe('ES6Pakket introspection:', () => {
     describe('Test the nature of ES6Pakket:', () => {
       it('Expects ES6Pakket to be a function.', () => {

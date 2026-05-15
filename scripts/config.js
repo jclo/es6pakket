@@ -18,7 +18,7 @@
 
 
 // -- Local Modules
-const pack = require('../package.json');
+import pack from '../package.json' with { type: 'json' };
 
 
 // -- Local Constants
@@ -34,7 +34,7 @@ const libname    = 'ES6Pakket'
 
 // -- Main
 
-module.exports = {
+export default {
   ES6GLOB: '$__ES6GLOB',
   root: '.',
   dist: './_dist',

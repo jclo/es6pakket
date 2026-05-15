@@ -1,5 +1,11 @@
 ### HEAD
 
+### 3.0.0 (May, 15, 2026)
+
+  * Updated the project to comply with ESM,
+  * ...,
+
+
 ### 2.2.0 (July 24, 2024)
 
   * Updated the project with @mobilabs/es6kadoo v2.2.1 (updated dependencies),

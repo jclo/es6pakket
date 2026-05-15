@@ -1,6 +1,6 @@
 {
   "name": "@mobilabs/es6pakket",
-  "version": "2.2.0",
+  "version": "3.0.0-beta.1.0",
   "description": "A boilerplate for building Javascript ES6 libraries with Pakket",
   "main": "_dist/lib/es6pakket.js",
   "minified": "_dist/lib/es6pakket.min.js",
@@ -9,6 +9,7 @@
   "bin": {
     "es6pakket": "./bin/es6pakket.js"
   },
+  "type": "module",
   "scripts": {
     "general": " --- GENERAL ---",
 
@@ -29,7 +30,7 @@
     "build:prod": "npm run build:js:prod",
 
     "testing": " --- TESTING --- ",
-    "test": "cross-env NODE_ENV=test c8 --reporter=lcov mocha --require esm ./test/main.js",
+    "test": "cross-env NODE_ENV=test c8 --reporter=lcov mocha ./test/main.js",
     "display:coverage": "open -a safari ./coverage/lcov-report/index.html",
     "check:coverage": "c8 check-coverage --statements 100 --branches 100 --functions 100 --lines 100",
     "report": "c8 report",
@@ -68,27 +69,27 @@
   },
   "homepage": "https://github.com/jclo/es6pakket",
   "dependencies": {
-    "nopt": "^7.2.1",
-    "shelljs": "^0.8.5"
+    "nopt": "^9.0.0",
+    "shelljs": "^0.10.0"
   },
   "devDependencies": {
-    "c8": "^10.1.2",
-    "chai": "^4.4.1",
-    "cross-env": "^7.0.3",
-    "eslint": "^8.57.0",
-    "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-plugin-import": "^2.29.1",
-    "esm": "^3.2.25",
+    "@eslint/js": "^9.39.4",
+    "c8": "^11.0.0",
+    "chai": "^6.2.2",
+    "cross-env": "^10.1.0",
+    "eslint": "^9.39.4",
+    "eslint-plugin-import": "^2.32.0",
     "http-server": "^14.1.1",
-    "husky": "^9.1.1",
-    "mocha": "^8.4.0",
-    "nodemon": "^3.1.4",
+    "husky": "^9.1.7",
+    "mocha": "^11.7.5",
+    "nodemon": "^3.1.14",
     "pakket": "^1.3.0",
-    "terser": "^5.31.3",
-    "@mobilabs/es6kadoo": "2.2.1"
+    "terser": "^5.47.1",
+    "@mobilabs/es6kadoo": "3.0.0-beta.1.0"
   },
   "c8": {
     "include": [
+      "index.js",
       "src/**/*.js"
     ],
     "exclude": [],

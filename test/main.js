@@ -7,9 +7,8 @@
 
 
 // -- Local Modules
-const testlib = require('./int/libprototypal')
-    , pack    = require('../package.json')
-    ;
+import testlib from './int/libprototypal.js';
+import pack from '../package.json' with { type: 'json' };
 
 
 // -- Local Constants
@@ -21,9 +20,6 @@ const libname = 'ES6Pakket';
 
 // -- Main
 
-// This define root for Node.js:
-global.root = {};
-
 // Nota:
 // If you want that 'display-coverage' shows the coverage files by files,
 // you should set 'ES6Pakket' and 'testlib' like this:
@@ -32,11 +28,11 @@ global.root = {};
 //
 // But, if you want that 'display-coverage' shows the coverage in one file,
 // you should set 'ES6Pakket' and 'testlib' like this:
-//  . const ES6Pakket = require('../index');
+//  . import ES6Pakket from '../index.js';
 //  . testlib(ES6Pakket, libname, pack.version, 'without new');
 
-const ES6Pakket = require('../src/prototypal').default;
-// const ES6Pakket = require('../index');
+import ES6Pakket from '../src/prototypal.js';
+// import ES6Pakket from '../index.js';
 
 describe('Test ES6Pakket:', () => {
   testlib(ES6Pakket, '{{lib:name}}', '{{lib:version}}', 'without new');

@@ -28,21 +28,17 @@
  * @since        0.0.0
  * @version      -
  * ********************************************************************** */
-/* global root */
-/* eslint-disable no-underscore-dangle */
+/* global */
 
 
 // -- Vendor Modules
 
 
 // -- Local Modules
-import Util from './util/util';
+import Util from './util/util.js';
 
 
 // -- Local Constants
-// Saves the previous value of the library variable, so that it can be
-// restored later on, if noConflict is used.
-const previousES6Pakket = root.ES6Pakket;
 
 
 // -- Local Variables
@@ -91,8 +87,7 @@ const ES6Pakket = {
    * @since 0.0.0
    */
   noConflict() {
-    /* eslint-disable-next-line no-param-reassign */
-    root.ES6Pakket = previousES6Pakket;
+    globalThis.ES6Pakket = previousES6Pakket;
     return this;
   },
 
@@ -143,8 +138,10 @@ const ES6Pakket = {
 ES6Pakket.NAME = '{{lib:name}}';
 ES6Pakket.VERSION = '{{lib:version}}';
 
+// Saves the previous value of the library variable, so that it can be
+// restored later on, if noConflict is used.
+const previousES6Pakket = globalThis.ES6Pakket;
+
 
 // -- Export
 export default ES6Pakket;
-
-/* eslint-enable no-underscore-dangle */

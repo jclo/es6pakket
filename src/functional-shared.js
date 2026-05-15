@@ -36,28 +36,21 @@
  * @since        0.0.0
  * @version      -
  * ********************************************************************** */
-/* global root */
-/* eslint-disable one-var, semi-style, no-underscore-dangle */
+/* global */
 
 
 // -- Vendor Modules
 
 
 // -- Local Modules
-import extend from './lib/extend';
-import Util from './util/util';
+import extend from './lib/extend.js';
+import Util from './util/util.js';
 
 
 // -- Local Constants
-// Saves the previous value of the library variable, so that it can be
-// restored later on, if noConflict is used.
-const previousES6Pakket = root.ES6Pakket
-    ;
 
 
 // -- Local Variables
-let methods
-  ;
 
 
 // -- Public ---------------------------------------------------------------
@@ -85,6 +78,10 @@ const ES6Pakket = function() {
 // Attaches constants to ES6Pakket that provide name and version of the lib.
 ES6Pakket.NAME = '{{lib:name}}';
 ES6Pakket.VERSION = '{{lib:version}}';
+
+// Saves the previous value of the library variable, so that it can be
+// restored later on, if noConflict is used.
+const previousES6Pakket = globalThis.ES6Pakket;
 
 
 // -- Private Static Methods -----------------------------------------------
@@ -121,15 +118,14 @@ ES6Pakket._setTestMode = function() {
  * @since 0.0.0
  */
 ES6Pakket.noConflict = function() {
-  /* eslint-disable-next-line no-param-reassign */
-  root.ES6Pakket = previousES6Pakket;
+  globalThis.ES6Pakket = previousES6Pakket;
   return this;
 };
 
 
 // -- Public Methods -------------------------------------------------------
 
-methods = {
+const methods = {
 
   /**
    * Returns the library name and version.
@@ -177,5 +173,3 @@ methods = {
 
 // -- Export
 export default ES6Pakket;
-
-/* eslint-enable one-var, semi-style, no-underscore-dangle */

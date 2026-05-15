@@ -57,7 +57,6 @@ const extend = function(object, methods) {
   const keys = Object.keys(methods);
 
   for (let i = 0; i < keys.length; i++) {
-    /* eslint-disable-next-line no-param-reassign */
     object[keys[i]] = methods[keys[i]];
   }
 };
@@ -65,5 +64,3 @@ const extend = function(object, methods) {
 
 // -- Export
 export default extend;
-
-/* - */
