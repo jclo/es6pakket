@@ -23,12 +23,12 @@
  * @since        0.0.0
  * @version      -
  * ************************************************************************** */
-/* eslint one-var: 0, semi-style: 0, no-underscore-dangle: 0, curly: 0 */
+/* eslint curly: 0 */
 
 
 // -- Vendor Modules
-import fs from 'fs';
-import path from 'path';
+import fs from 'node:fs';
+import path from 'node:path';
 import nopt from 'nopt';
 
 

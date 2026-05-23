@@ -28,11 +28,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  * ************************************************************************** */
-/* eslint one-var: 0, semi-style: 0, no-underscore-dangle: 0, curly: 0 */
+/* eslint no-unused-vars: 0, curly: 0 */
 
 
 // -- Vendor Modules
-import fs from 'fs';
+import fs from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import nopt from 'nopt';
@@ -153,6 +153,8 @@ const gitignore = [
   '',
   'coverage',
   'node_modules',
+  '.npmrc',
+  'package.publish.json',
   '',
 ].join('\n');
 
@@ -165,6 +167,10 @@ const npmignore = [
   '*',
   '!_dist/**/*',
   '',
+].join('\n');
+
+const npmrc = [
+  '//registry.npmjs.org/:_authToken=<the active Granular Token>',
 ].join('\n');
 
 
@@ -252,10 +258,10 @@ function _isFolderEmpty(folder) {
  */
 function _addSkeleton(base, app, owner, cright) {
   const newFiles = [
-    [readme, license, changelog, gitignore, eslintignore, npmignore, index],
+    [readme, license, changelog, gitignore, eslintignore, npmignore, npmrc, index],
     [
       'README.md', 'LICENSE.md', 'CHANGELOG.md', '.gitignore', '.eslintignore',
-      '.npmignore', 'index.js',
+      '.npmignore', 'npmrc', 'index.js',
     ],
   ];
 
@@ -328,8 +334,12 @@ function _customize(source, dest, app, owner, boilerlib) {
   delete pack.scripts['dep:private:package'];
   delete pack.scripts['dep:npm:private:package'];
 
+  pack.scripts['npm:make:package:json'] = 'node scripts/make:package:publish:json.js $1';
+  pack.scripts['prepack'] = 'if [[ ! -f package.publish.json ]]; then npm run npm:make:package:json ; fi && mv package.json package.dev.json && cp package.publish.json package.json';
+  pack.scripts['postpack'] = 'mv package.dev.json package.json';
+
   pack.repository = obj.repository;
-  pack.repository.url = `https://github.com/${owner.acronym}/${app.toLowerCase()}.git`;
+  pack.repository.url = `git+https://github.com/${owner.acronym}/${app.toLowerCase()}.git`;
   pack.keywords = ['ES6'];
   pack.author = obj.author;
   pack.author.name = owner.name;

@@ -1,13 +1,13 @@
 {
   "name": "@mobilabs/es6pakket",
-  "version": "3.0.0-beta.1.1",
+  "version": "3.0.0-beta.1.2",
   "description": "A boilerplate for building Javascript ES6 libraries with Pakket",
   "main": "_dist/lib/es6pakket.js",
   "minified": "_dist/lib/es6pakket.min.js",
   "unpkg": "_dist/lib/es6pakket.mjs",
   "module": "_dist/lib/es6pakket.min.mjs",
   "bin": {
-    "es6pakket": "./bin/es6pakket.js"
+    "es6pakket": "bin/es6pakket.js"
   },
   "type": "module",
   "scripts": {
@@ -27,7 +27,7 @@
     "build:production": " --- BUILDING (PRODUCTION) --- ",
     "build:skeleton:prod": "node scripts/build.skeleton.prod.js $1",
     "prebuild:prod": "npm run build:dev && npm run build:skeleton:prod",
-    "build:prod": "npm run build:js:prod",
+    "build:prod": "npm run build:js:prod && npm run npm:make:package:json",
 
     "testing": " --- TESTING --- ",
     "test": "cross-env NODE_ENV=test c8 --reporter=lcov mocha ./test/main.js",
@@ -48,12 +48,23 @@
     "dep:private:package": "npm run build:prod && node scripts/dep.private.js && sh scripts/compress.sh ${npm_package_name} ${npm_package_version} @mobilabs",
     "dep:npm:private:package": "npm run build:prod && npm pack && sh scripts/dep.npm.private.sh ${npm_package_name} ${npm_package_version} @mobilabs",
 
+    "npm:publishing": " --- PUBLISHING --- ",
+    "npm:make:package:json": "",
+    "prepack": "",
+    "postpack": "",
+
+    "doc:site:web": " --- DOCUMENTING --- ",
+    "doc:site:init": "kasar init --theme <theme-name>",
+    "doc:site:build": "kasar build",
+    "doc:site:watch": "kasar watch",
+    "doc:site:start": "kasar serve --port $1",
+
     "others": " --- OTHERS ---",
     "prepare": "husky"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/jclo/es6pakket.git"
+    "url": "git+https://github.com/jclo/es6pakket.git"
   },
   "keywords": [
     "ES6"
@@ -85,7 +96,7 @@
     "nodemon": "^3.1.14",
     "pakket": "^1.3.0",
     "terser": "^5.47.1",
-    "@mobilabs/es6kadoo": "3.0.0-beta.1.0"
+    "@mobilabs/es6kadoo": "3.0.0-beta.1.5"
   },
   "c8": {
     "include": [

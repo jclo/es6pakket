@@ -8,3 +8,4 @@ node_modules
 private_repo
 npm_private_repo
 .npmrc
+package.publish.json
