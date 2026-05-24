@@ -1,5 +1,5 @@
 /*! ****************************************************************************
- * ES6Pakket v3.0.0-beta.1.2
+ * ES6Pakket v3.0.0-beta.1.3
  *
  * A boilerplate for building Javascript ES6 libraries with Pakket.
  * (you can download it from npm or github repositories)
@@ -108,14 +108,14 @@ const $__ES6GLOB = {};
       const obj = Object.create(methods);
       obj._library = {
         name: 'ES6Pakket',
-        version: '3.0.0-beta.1.2',
+        version: '3.0.0-beta.1.3',
       };
       return obj;
     };
 
     // Attaches constants to ES6Pakket that provide name and version of the lib.
     ES6Pakket.NAME = 'ES6Pakket';
-    ES6Pakket.VERSION = '3.0.0-beta.1.2';
+    ES6Pakket.VERSION = '3.0.0-beta.1.3';
 
     // Saves the previous value of the library variable, so that it can be
     // restored later on, if noConflict is used.

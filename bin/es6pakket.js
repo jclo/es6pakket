@@ -35,8 +35,8 @@
 import fs from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
-import nopt from 'nopt';
 import path from 'path';
+import nopt from 'nopt';
 import shell from 'shelljs';
 
 
